@@ -1,0 +1,102 @@
+/* ==========================================================================
+   15 — RODAPÉ  (Figma 3270:1367 — 1920 x 501, fundo #003511)
+   Três colunas — marca, navegação e redes — mais o filete com o copyright.
+   ========================================================================== */
+
+.rodape {
+  padding-block: clamp(3.5rem, 5.52vw, 106px);
+  background: var(--c-verde-escuro);
+  color: var(--c-rodape-texto);
+}
+
+.rodape__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 49px;
+}
+
+.rodape__topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+/* ---- Marca --------------------------------------------------------------- */
+.rodape__marca {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 268px;
+}
+
+.rodape__logo {
+  display: block;
+  width: 178px;
+  height: auto;
+}
+
+.rodape__sobre {
+  font-size: 1rem; /* 16px */
+  line-height: 1.56;
+}
+
+/* ---- Colunas de links ---------------------------------------------------- */
+.rodape__nav ul,
+.rodape__redes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rodape__nav {
+  width: 155px;
+}
+
+.rodape__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.393; /* 19,5px */
+  color: var(--c-rodape-texto);
+  text-decoration: underline;
+  text-underline-position: from-font;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.rodape__link:hover,
+.rodape__link:focus-visible {
+  color: var(--c-branco);
+}
+
+.rodape__link img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---- Rodapé do rodapé ---------------------------------------------------- */
+.rodape__base {
+  padding-top: 22px;
+  font-size: 0.875rem;
+  line-height: 1.286; /* 18px */
+  letter-spacing: 0.48px;
+  text-align: center;
+  border-top: 1px solid rgb(185 185 185 / 0.13);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+@media (max-width: 767px) {
+  .rodape__topo {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .rodape__marca {
+    width: 100%;
+    max-width: 320px;
+  }
+}

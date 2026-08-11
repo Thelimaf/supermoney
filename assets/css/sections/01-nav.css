@@ -1,0 +1,216 @@
+/* ==========================================================================
+   01 — NAVEGAÇÃO  (Figma 3270:520)
+   Fixa no topo. Transparente sobre o hero, sólida depois de 100px.
+   ========================================================================== */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-nav);
+  padding-block: clamp(1rem, 2.14vw, 41px);
+  transition: padding-block var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+/* Estado "colado": fundo sólido + blur.
+   O blur vive NESTA camada, e não no `.nav`, de propósito. `backdrop-filter`
+   transforma o elemento em bloco contêiner de qualquer descendente
+   `position: fixed` — com ele no `.nav`, o painel do menu mobile (fixed,
+   inset: 0) deixava de medir a viewport e encolhia para a caixa da barra:
+   ficava sem cobrir a tela e sem receber os cliques dos links. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: color-mix(in srgb, var(--c-verde-escuro) 88%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.nav.is-stuck {
+  padding-block: clamp(0.625rem, 1.15vw, 1.375rem);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.08);
+}
+
+.nav.is-stuck::before {
+  opacity: 1;
+}
+
+/* com o menu aberto a barra não precisa de fundo próprio: o painel já cobre */
+.nav.is-open::before {
+  opacity: 0;
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-6);
+}
+
+/* ---- Logo ---------------------------------------------------------------- */
+.nav__logo {
+  flex: none;
+  display: block;
+  width: clamp(112px, 9.27vw, 178px);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.nav__logo img {
+  width: 100%;
+}
+
+.nav__logo:hover {
+  transform: scale(1.03);
+}
+
+.nav.is-stuck .nav__logo {
+  width: clamp(96px, 6.5vw, 124px);
+}
+
+/* ---- Menu ---------------------------------------------------------------- */
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 1.2vw, 23px);
+}
+
+.nav__link {
+  position: relative;
+  font-size: var(--fs-body);
+  color: var(--c-branco);
+  padding-block: 4px;
+}
+
+/* sublinhado que cresce do centro */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--c-verde-lima);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* ---- CTA ----------------------------------------------------------------- */
+.nav__cta {
+  flex: none;
+}
+
+/* ---- Botão hambúrguer (só mobile) --------------------------------------- */
+.nav__toggle {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  z-index: 2;
+}
+
+.nav__toggle span {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 2px;
+  background: var(--c-branco);
+  border-radius: 2px;
+  transition: transform var(--dur-base) var(--ease-out),
+    opacity var(--dur-fast) linear;
+}
+
+.nav__toggle span:nth-child(1) {
+  top: 16px;
+}
+.nav__toggle span:nth-child(2) {
+  top: 22px;
+}
+.nav__toggle span:nth-child(3) {
+  top: 28px;
+}
+
+.nav.is-open .nav__toggle span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav.is-open .nav__toggle span:nth-child(2) {
+  opacity: 0;
+}
+.nav.is-open .nav__toggle span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Mobile / tablet
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  /* o logo continua visível por cima do painel aberto */
+  .nav__logo {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* painel full-screen */
+  .nav__panel {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--sp-6);
+    /* o topo só precisa desviar da barra; o resto é centralizado.
+       Com 22vh AQUI e `center`, os dois se somavam e o bloco de links
+       descia demais, deixando um vão grande embaixo do logo. */
+    padding: calc(clamp(96px, 11vw, 132px) + var(--sp-6)) var(--gutter) var(--sp-10);
+    background: var(--c-verde-escuro);
+    clip-path: inset(0 0 100% 0);
+    /* `visibility` é do GSAP, não de uma classe: trocada por classe, ela
+       sumia com o painel no primeiro frame do fechamento e a animação de
+       saída rodava invisível. */
+    visibility: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .nav__menu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-5);
+  }
+
+  .nav__link {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    font-weight: 700;
+  }
+
+  .nav__cta {
+    margin-top: var(--sp-4);
+  }
+
+  /* trava o scroll do body com o menu aberto */
+  body.has-menu-open {
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav__panel {
+    display: contents; /* no desktop o painel não existe como caixa */
+  }
+}

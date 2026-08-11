@@ -1,0 +1,223 @@
+/* ==========================================================================
+   05 — COMO FUNCIONA  (Figma 3270:607 — 1920 x 929, fundo #003511)
+   Título + 4 cards de passo em 2 x 2, com numeral gigante translúcido.
+   ========================================================================== */
+
+.como {
+  padding-block: clamp(3rem, 5.83vw, 112px); /* conteúdo centralizado em 929 */
+  background: var(--c-verde-escuro);
+  color: var(--c-branco);
+}
+
+/* ---- Decorativos --------------------------------------------------------- */
+.como__frame {
+  width: 50%; /* 960 / 1920 */
+  aspect-ratio: 1;
+  opacity: 0.85;
+}
+
+.como__frame--dir {
+  left: 67.76%; /* 1301 / 1920 */
+  top: 40.37%; /* 375 / 929   */
+}
+
+.como__frame--esq {
+  left: -21.56%; /* -414 / 1920 */
+  top: -51.67%; /* -480 / 929  */
+  transform: rotate(180deg);
+}
+
+/* Glow.
+   No Figma são dois discos borrados (r=415 com σ=562 e r=164 com σ=222) num
+   grupo com mix-blend-mode: screen, centrados na base da seção. Um
+   `filter: blur(562px)` criaria uma camada de ~4200px na GPU só para isso.
+
+   Em vez de imitar a técnica, medimos o resultado: amostramos o verde do
+   Figma em vários raios a partir do centro do glow (960, 928) e convertemos
+   cada valor na opacidade equivalente sob blend screen sobre #003511
+   (delta_verde / 161.6). Os stops abaixo são exatamente esse perfil — daí a
+   curva bater no ponto em toda a seção, e não só no pico:
+
+     raio 0     -> +92 de verde -> alpha 0.569
+     raio 428   -> +40          -> alpha 0.248
+     raio 848   -> +13          -> alpha 0.080
+     raio 1264  -> +2           -> alpha 0.012
+
+   O raio de referência é 1500px = 78.1vw, então escala com a página.       */
+.como__glow {
+  inset: 0;
+  mix-blend-mode: screen;
+  background:
+    /* Núcleo (#0CFF00, sem azul). É ele que derruba o azul no centro da base:
+       sozinho, o gradiente principal deixava o azul em 57 onde o Figma tem 35.
+       As duas opacidades (0.27 e 0.32) foram resolvidas numericamente para o
+       composto sob screen dar exatamente (11, 145, 35).                     */
+    radial-gradient(
+      24vw 24vw at 53% 98%,
+      rgb(12 255 0 / 0.27) 0%,
+      rgb(12 255 0 / 0) 100%
+    ),
+    /* perfil principal, calibrado por amostragem */
+      radial-gradient(
+        78.1vw 78.1vw at 50% 100%,
+        rgb(35 204 83 / 0.32) 0%,
+        rgb(35 204 83 / 0.248) 28.5%,
+        rgb(35 204 83 / 0.08) 56.5%,
+        rgb(35 204 83 / 0.012) 84.3%,
+        rgb(35 204 83 / 0) 100%
+      );
+}
+
+/* ---- Conteúdo ------------------------------------------------------------ */
+.como__inner {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 52px;
+}
+
+.como__title {
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+  text-align: center;
+}
+
+.como__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+/* ---- Card de passo ------------------------------------------------------- */
+.passo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--sp-6);
+  min-height: 289px;
+  padding: 33px 28px;
+  background: var(--c-passo-card);
+  border-radius: var(--r-card);
+  overflow: hidden; /* o numeral não escapa do card */
+}
+
+.passo__badge {
+  align-self: flex-start;
+  padding: 8px 14px;
+  font-size: var(--fs-card-text);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--c-verde-titulo);
+  background: var(--c-passo-badge);
+  border-radius: var(--r-pill);
+}
+
+.passo__body {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.passo__icon {
+  width: 40px;
+  height: 40px;
+  flex: none;
+}
+
+.passo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.passo__title {
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--c-verde-titulo);
+}
+
+.passo__desc {
+  font-size: var(--fs-card-text);
+  line-height: 1.26;
+  color: var(--c-texto-corpo);
+}
+
+/* Nos passos 2 e 4 o Figma limita a descrição a 411px (os passos 1 e 3 usam
+   os 464px inteiros). Sem isso a quebra de linha sai diferente do design. */
+.passo__desc--estreita {
+  max-width: 411px;
+}
+
+@media (max-width: 1023px) {
+  .passo__desc--estreita {
+    max-width: none;
+  }
+}
+
+/* Numeral gigante.
+   O Figma usa Helvetica Now Display *Light*, peso que não temos licenciado —
+   só Regular e Bold. Com font-weight: 300 declarado, o browser cai em Regular
+   agora e passa a usar Light automaticamente se o arquivo for adicionado. */
+.passo__num {
+  position: absolute;
+  top: 15px;
+  /* alinhado pela direita, não centralizado: o Figma centra o numeral em
+     460px de 520, e como cada glifo tem largura diferente a borda direita
+     cai entre 25 e 27px em 3 dos 4 cards. Alinhar pela direita bate com
+     esses três e evita um translateX no CSS, que competiria com o parallax
+     que o GSAP escreve no mesmo transform.                                 */
+  right: 26px;
+  font-size: clamp(3.5rem, 6.25vw, 120px);
+  font-weight: 300;
+  line-height: 1.08;
+  color: rgb(10 65 10 / 0.18);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .como__inner {
+    gap: clamp(2rem, 5vw, 52px);
+  }
+
+  .passo {
+    min-height: 0;
+    padding: 28px 24px;
+  }
+
+  .passo__num {
+    right: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  .como__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .passo {
+    gap: var(--sp-5);
+  }
+
+  .como__frame--dir {
+    left: 40%;
+    top: 30%;
+    width: 110%;
+  }
+
+  .como__frame--esq {
+    left: -70%;
+    top: -12%;
+    width: 110%;
+  }
+}

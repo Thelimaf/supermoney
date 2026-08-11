@@ -1,0 +1,100 @@
+/* ==========================================================================
+   04 — SOLUÇÕES DE CRÉDITO  (Figma 3270:545 — 1920 x 977, fundo branco)
+   Cabeçalho centralizado + 7 cards em 4 e 3.
+   ========================================================================== */
+
+.sols {
+  padding-block: clamp(3.5rem, 6.46vw, 124px); /* 124 no Figma */
+  background: var(--c-branco);
+}
+
+/* ---- Cabeçalho ----------------------------------------------------------- */
+.sols__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  max-width: 647px;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--c-titulo-secao);
+}
+
+.sols__title {
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+  color: inherit;
+}
+
+.sols__lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+}
+
+/* ==========================================================================
+   Grade
+   O Figma tem duas fileiras: 4 cards de 250px e 3 de 340px, ambas com 1060px
+   de largura e gap 20. Num grid de 12 colunas isso cai exato:
+     coluna = (1060 - 11*20) / 12 = 70px
+     span 3 = 3*70 + 2*20 = 250px   ✓ fileira de 4
+     span 4 = 4*70 + 3*20 = 340px   ✓ fileira de 3
+   Uma única grade em vez de duas fileiras separadas — colapsa melhor no
+   responsivo e mantém a medida do desktop no pixel.
+   ========================================================================== */
+.sols__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 19px 20px; /* 19 entre fileiras, 20 entre colunas */
+  margin-top: 45px; /* 264 - (124 + 95) no Figma */
+}
+
+.sols__grid > .card-info {
+  --icon-size: 46px;
+}
+
+.sols__item--quarto {
+  grid-column: span 3;
+}
+
+.sols__item--terco {
+  grid-column: span 4;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+/* Tablet: 2 colunas, todos os cards iguais */
+@media (max-width: 1023px) {
+  .sols__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: clamp(2rem, 5vw, 45px);
+  }
+
+  .sols__item--quarto,
+  .sols__item--terco {
+    grid-column: span 1;
+  }
+
+  /* são 7 cards em 2 colunas: o último sobraria sozinho, então ocupa a
+     largura toda e a fileira final fica intencional                        */
+  .sols__grid > :last-child {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile: coluna única */
+@media (max-width: 599px) {
+  .sols__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* precisa desfazer o span 2 do tablet: com uma só coluna explícita, um item
+     pedindo 2 colunas faz o grid criar uma coluna implícita `auto` e a grade
+     volta a ter 2 colunas, de larguras desiguais                            */
+  .sols__grid > :last-child {
+    grid-column: span 1;
+  }
+}

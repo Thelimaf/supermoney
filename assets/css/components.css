@@ -1,0 +1,168 @@
+/* ==========================================================================
+   COMPONENTES compartilhados entre seções
+   ========================================================================== */
+
+/* ---- Botões -------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--c-verde-lima);
+  --btn-fg: var(--c-lima-texto);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 16px 24px;
+  font-size: var(--fs-body);
+  font-weight: 700;
+  line-height: 1.5; /* caixa de 24px → botão de 56px, como no Figma */
+  text-align: center;
+  white-space: nowrap;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  border-radius: var(--r-btn);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+/* brilho que varre o botão no hover */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.45) 50%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-expo);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -8px rgb(0 0 0 / 0.35);
+}
+
+.btn:hover::after {
+  transform: translateX(120%);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--light {
+  --btn-bg: var(--c-branco);
+  --btn-fg: var(--c-preto-btn);
+  font-weight: 400;
+}
+
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--c-branco);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
+}
+
+/* ---- Card de informação -------------------------------------------------- */
+/* Ícone + título + texto sobre fundo claro. As medidas vêm do Figma e são
+   idênticas em "Diferenciais" (3270:441) e "Soluções de crédito" (3270:550):
+   padding 46/28, gap 19, gap interno 17, raio 10. A única variação é o
+   tamanho do ícone — 42px numa, 46px na outra — daí o --icon-size.          */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding: 46px 28px;
+  background: var(--c-card-claro);
+  border-radius: var(--r-card);
+}
+
+.card-info__icon {
+  width: var(--icon-size, 42px);
+  height: var(--icon-size, 42px);
+  flex: none;
+}
+
+.card-info__body {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.card-info__title {
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--c-verde-titulo);
+}
+
+.card-info__text {
+  font-size: var(--fs-card-text);
+  line-height: 1.26;
+  color: var(--c-texto-corpo);
+}
+
+/* Sem hover no card: nada de elevação nem sombra ao passar o mouse. */
+
+@media (max-width: 1023px) {
+  .card-info {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 599px) {
+  .card-info {
+    padding: 28px 22px;
+    gap: 16px;
+  }
+
+  .card-info__body {
+    gap: 10px;
+  }
+}
+
+/* ---- Badge / pill -------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 8px 14px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-lima-texto);
+  background: var(--c-verde-lima);
+  border-radius: var(--r-pill);
+}
+
+/* ---- Elementos decorativos de fundo -------------------------------------- */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: var(--z-deco);
+}
+
+/* Glows.
+   O Figma exporta cada glow como um círculo sólido com feGaussianBlur. O
+   `filter: blur()` do CSS é a mesma gaussiana, então um círculo sólido com o
+   mesmo raio e o mesmo desvio-padrão reproduz o original exatamente — e é
+   muito mais leve que um SVG de 2242px com filtro.
+   Cada glow define --glow-color, --glow-blur (em vw, para escalar junto com a
+   página) e, quando preciso, --glow-opacity.                                 */
+.deco--glow {
+  border-radius: 50%;
+  background: var(--glow-color, var(--c-glow-a));
+  filter: blur(var(--glow-blur, 8vw));
+  opacity: var(--glow-opacity, 1);
+  will-change: transform;
+}
+
+.deco--glow-screen {
+  mix-blend-mode: screen;
+}

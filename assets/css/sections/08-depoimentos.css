@@ -1,0 +1,311 @@
+/* ==========================================================================
+   07 — DEPOIMENTOS  (Figma 3270:681 / 3270:684 — dentro do frame 3270:680)
+   Carrossel com o card do meio em destaque e os vizinhos reduzidos nas
+   laterais. Arrasta, clica na seta, no ponto ou no próprio card lateral.
+   ========================================================================== */
+
+.depo {
+  padding-block: clamp(3.5rem, 6.46vw, 124px) clamp(3rem, 7.9vw, 152px);
+  background: var(--c-branco);
+  color: var(--c-titulo-secao);
+}
+
+.depo__title {
+  max-width: 1007px;
+  margin-inline: auto;
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Pista
+   Os cards são todos do tamanho do card central (405x423) e os laterais são
+   reduzidos por `scale`. No Figma o card lateral é um desenho próprio
+   (305x306, tipografia menor), mas escalar o mesmo card mantém a transição
+   contínua no arraste — que é o que faz um carrossel assim parecer certo.
+   0.753 = 305/405, então a largura visual bate com o design.
+   ========================================================================== */
+.depo__viewport {
+  --depo-card-w: 405px;
+  --depo-card-h: 423px;
+  --depo-escala-lado: 0.753;
+  --depo-gap: 22.5px; /* 1060 − (305 + 405 + 305) = 45, dividido em 2 */
+
+  position: relative;
+  height: var(--depo-card-h);
+  /* No Figma a fileira está em y=116 dentro do Frame 34, medido a partir do
+     TOPO do título (que tem 56px de altura) — o espaço livre é 116−56 = 60. */
+  margin-top: 60px;
+  /* deixa a sombra respirar sem cortar, mas esconde os cards que saem */
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y; /* o arraste horizontal é nosso; o vertical é da página */
+}
+
+.depo__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.depo__track {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---- Card ---------------------------------------------------------------- */
+.depo__card {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--depo-card-w);
+  height: var(--depo-card-h);
+  margin-left: calc(var(--depo-card-w) / -2);
+  background: var(--c-branco);
+  border-radius: 12px;
+  box-shadow: 0 0 20px 0 rgb(0 0 0 / 0.07);
+  overflow: hidden;
+  font-family: var(--ff-depoimento);
+  color: #000;
+  will-change: transform;
+}
+
+/* o card lateral é clicável para virar o do meio */
+.depo__card:not(.is-ativo) {
+  cursor: pointer;
+}
+
+/* Card fora de cena. O `!important` é proposital: a animação de entrada da
+   seção escreve `opacity` inline nos cards, e inline vence classe. Como o
+   card já está clipado pelo overflow da pista, não há transição a perder. */
+.depo__card.is-fora {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* ---- Cabeçalho do card --------------------------------------------------- */
+.depo__head {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 11px;
+}
+
+.depo__pessoa {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.depo__avatar {
+  width: 72px;
+  height: 72px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.depo__nome {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.depo__estrelas {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+
+.depo__estrelas img {
+  width: 22px;
+  height: 22px;
+}
+
+/* ---- Corpo do card ------------------------------------------------------- */
+.depo__corpo {
+  position: absolute;
+  left: 21px;
+  top: 134px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  width: 355px;
+  text-align: center;
+}
+
+.depo__resumo {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.depo__texto {
+  font-size: 18px;
+  line-height: normal;
+}
+
+/* ==========================================================================
+   Controles
+   ========================================================================== */
+.depo__controles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  margin-top: 35px;
+}
+
+.depo__seta {
+  --rot: 0deg;
+
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  flex: none;
+  border-radius: 50%;
+}
+
+/* Área de clique de 49px sem mexer no layout.
+   O ícone continua com os 25px do Figma, mas 25px é alvo pequeno demais para
+   o mouse e muito abaixo do mínimo de toque no celular. */
+.depo__seta::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+}
+
+/* O scale do hover vai no ÍCONE, não no botão: crescer a caixa do botão
+   move o próprio alvo do clique debaixo do cursor e o primeiro clique
+   escapava. */
+.depo__seta img {
+  width: 25px;
+  height: 25px;
+  transform: rotate(var(--rot));
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.depo__seta--prev {
+  --rot: 90deg;
+}
+
+.depo__seta--next {
+  --rot: -90deg;
+}
+
+.depo__seta:hover img {
+  transform: rotate(var(--rot)) scale(1.2);
+}
+
+.depo__seta:active img {
+  transform: rotate(var(--rot)) scale(0.92);
+}
+
+/* dots: 4 de 10px com gap 8 = 64px, como no Figma */
+.depo__pontos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.depo__ponto {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  transition: background-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+/* mesma história das setas: 10px é impossível de acertar */
+.depo__ponto::before {
+  content: "";
+  position: absolute;
+  inset: -13px -4px;
+}
+
+.depo__ponto[aria-current="true"] {
+  background: #5b5b5b;
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .depo__viewport {
+    --depo-card-w: min(78vw, 405px);
+    /* auto: a altura passa a seguir o conteúdo e o JS mede o card mais alto
+       para dar altura à pista (os cards são absolutos, não empurram nada) */
+    --depo-card-h: auto;
+    --depo-gap: 16px;
+    margin-top: clamp(2rem, 5vw, 60px);
+  }
+
+  /* o conteúdo interno era posicionado em px absolutos para bater com o
+     Figma; abaixo do desktop ele passa a fluir                              */
+  .depo__card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    height: auto;
+    padding: 28px 22px;
+  }
+
+  .depo__head,
+  .depo__corpo {
+    position: static;
+    width: auto;
+  }
+
+  .depo__head {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .depo__corpo {
+    gap: 16px;
+  }
+
+  .depo__avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .depo__nome,
+  .depo__resumo {
+    font-size: 20px;
+  }
+
+  .depo__texto {
+    font-size: 16px;
+  }
+
+  .depo__estrelas img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 599px) {
+  .depo__viewport {
+    --depo-card-w: min(84vw, 340px);
+    --depo-escala-lado: 0.86; /* vizinhos só espiam na borda */
+    --depo-gap: 12px;
+  }
+
+  .depo__texto {
+    font-size: 15px;
+  }
+}

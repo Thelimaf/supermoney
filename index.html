@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Super Money — Lugar de gente feliz</title>
+    <meta
+      name="description"
+      content="Há 16 anos oferecendo crédito rápido, seguro e humano — consignado INSS, CLT, servidor público, FGTS, cartão e limpa nome, para todo o Brasil."
+    />
+    <meta name="theme-color" content="#003511" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Super Money — Lugar de gente feliz" />
+    <meta
+      property="og:description"
+      content="Crédito rápido, seguro e humano há 16 anos. Sem consulta ao SPC/Serasa."
+    />
+    <meta property="og:locale" content="pt_BR" />
+
+    <link rel="icon" href="assets/img/logo/favicon.svg" type="image/svg+xml" />
+
+    <!-- Fontes locais: pré-carrega os dois pesos usados acima da dobra -->
+    <link
+      rel="preload"
+      href="assets/fonts/HelveticaNowDisplay-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/HelveticaNowDisplay-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- A foto do hero é o LCP: começa a baixar junto com o CSS -->
+    <link rel="preload" href="assets/img/hero/hero-mulher.webp" as="image" fetchpriority="high" />
+
+    <!-- Base -->
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+    <!-- Seções (uma linha por sessão de trabalho) -->
+    <link rel="stylesheet" href="assets/css/sections/01-nav.css" />
+    <link rel="stylesheet" href="assets/css/sections/02-hero.css" />
+    <link rel="stylesheet" href="assets/css/sections/03-diferenciais.css" />
+    <link rel="stylesheet" href="assets/css/sections/04-sobre.css" />
+    <link rel="stylesheet" href="assets/css/sections/05-solucoes.css" />
+    <link rel="stylesheet" href="assets/css/sections/06-como-funciona.css" />
+    <link rel="stylesheet" href="assets/css/sections/07-brinde.css" />
+    <link rel="stylesheet" href="assets/css/sections/08-depoimentos.css" />
+    <link rel="stylesheet" href="assets/css/sections/09-bancos.css" />
+    <link rel="stylesheet" href="assets/css/sections/10-produto.css" />
+    <link rel="stylesheet" href="assets/css/sections/11-unidades.css" />
+    <link rel="stylesheet" href="assets/css/sections/12-faq.css" />
+    <link rel="stylesheet" href="assets/css/sections/13-rodape.css" />
+    <!-- SM:CSS -->
+
+    <script>
+      // Marca que o JS está ativo antes do primeiro paint: só então o CSS
+      // esconde os elementos que o GSAP vai revelar.
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+
+  <body>
+    <a class="u-skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- ====================================================================
+         01 — NAVEGAÇÃO (Figma 3270:520)
+         ==================================================================== -->
+    <header class="nav" id="nav">
+      <div class="nav__inner container">
+        <a class="nav__logo" href="#inicio" aria-label="Super Money — página inicial">
+          <img decoding="async" src="assets/img/logo/logo-supermoney.svg" alt="Super Money" width="178" height="101" />
+        </a>
+
+        <div class="nav__panel" id="nav-panel">
+          <nav class="nav__menu" aria-label="Navegação principal">
+            <a class="nav__link" href="#inicio">Início</a>
+            <a class="nav__link" href="#produtos">Produtos</a>
+            <a class="nav__link" href="#sobre">Sobre Nós</a>
+            <a class="nav__link" href="#depoimentos">Depoimentos</a>
+            <a class="nav__link" href="#unidades">Unidades</a>
+            <a class="nav__link" href="#faq">FAQ</a>
+          </nav>
+
+          <a
+            class="btn btn--light nav__cta"
+            href="https://wa.me/5527999623772"
+            target="_blank"
+            rel="noopener"
+            >Fale no WhatsApp</a
+          >
+        </div>
+
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-controls="nav-panel"
+          aria-expanded="false"
+          aria-label="Abrir menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <!-- ==================================================================
+           01 — HERO (Figma 3270:485)
+           ================================================================== -->
+      <section class="hero section" id="inicio">
+        <!-- decorativos: não entram na árvore de acessibilidade -->
+        <img decoding="async"
+          class="deco hero__blob"
+          src="assets/img/hero/shape-rect-4.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <img decoding="async"
+          class="deco hero__frame hero__frame--right"
+          src="assets/img/hero/shape-rect-7.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <img decoding="async"
+          class="deco hero__frame hero__frame--left"
+          src="assets/img/hero/shape-rect-6.svg"
+          alt=""
+          aria-hidden="true"
+        />
+        <div class="deco deco--glow hero__glow hero__glow--big" aria-hidden="true"></div>
+        <div
+          class="deco deco--glow deco--glow-screen hero__glow hero__glow--small"
+          aria-hidden="true"
+        ></div>
+
+        <img decoding="async"
+          class="hero__photo"
+          src="assets/img/hero/hero-mulher.webp"
+          alt="Cliente da Super Money sorrindo com o celular na mão"
+          width="611"
+          height="728"
+          fetchpriority="high"
+        />
+
+        <div class="container hero__inner">
+          <div class="hero__copy">
+            <h1 class="hero__title" data-anim="lines">
+              Super Money, lugar de gente feliz.
+            </h1>
+
+            <p class="hero__lead" data-anim="fade-up">
+              Há 16 anos oferecendo crédito rápido, seguro e humano — consignado,
+              FGTS, cartão e muito mais, para todo o Brasil.
+            </p>
+
+            <div class="hero__actions">
+              <a
+                class="btn"
+                data-anim="fade-up"
+                href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20simular%20meu%20cr%C3%A9dito."
+                target="_blank"
+                rel="noopener"
+                >Simular meu crédito</a
+              >
+              <a
+                class="btn btn--light"
+                data-anim="fade-up"
+                href="https://wa.me/5527999623772"
+                target="_blank"
+                rel="noopener"
+                >Falar no WhatsApp</a
+              >
+            </div>
+          </div>
+
+          <ul class="hero__badges">
+            <li class="hero__badge" data-anim="fade-up">
+              <img decoding="async" src="assets/icons/seal-check.svg" alt="" aria-hidden="true" />
+              16 anos de mercado
+            </li>
+            <li class="hero__badge" data-anim="fade-up">
+              <img decoding="async" src="assets/icons/seal-check.svg" alt="" aria-hidden="true" />
+              Atendimento humano
+            </li>
+            <li class="hero__badge" data-anim="fade-up">
+              <img decoding="async" src="assets/icons/seal-check.svg" alt="" aria-hidden="true" />
+              Sem consulta ao SPC/Serasa
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           02 — DIFERENCIAIS (Figma 3270:439)
+           ================================================================== -->
+      <section class="difs section" aria-labelledby="difs-titulo">
+        <h2 id="difs-titulo" class="u-sr-only">Por que escolher a Super Money</h2>
+
+        <div class="container">
+          <ul class="difs__grid">
+            <li class="card-info" data-anim="fade-up">
+              <img loading="lazy" decoding="async"
+                class="card-info__icon"
+                src="assets/icons/calendar-check.svg"
+                alt=""
+                aria-hidden="true"
+                width="42"
+                height="42"
+              />
+              <div class="card-info__body">
+                <h3 class="card-info__title">16 anos de mercado</h3>
+                <p class="card-info__text">Solidez que só o tempo comprova</p>
+              </div>
+            </li>
+
+            <li class="card-info" data-anim="fade-up">
+              <img loading="lazy" decoding="async"
+                class="card-info__icon"
+                src="assets/icons/magnifying-glass-minus.svg"
+                alt=""
+                aria-hidden="true"
+                width="42"
+                height="42"
+              />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Sem consulta ao SPC/Serasa</h3>
+                <p class="card-info__text">Negativado também pode contratar</p>
+              </div>
+            </li>
+
+            <li class="card-info" data-anim="fade-up">
+              <img loading="lazy" decoding="async"
+                class="card-info__icon"
+                src="assets/icons/user-check.svg"
+                alt=""
+                aria-hidden="true"
+                width="42"
+                height="42"
+              />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Atendimento humano</h3>
+                <p class="card-info__text">Uma pessoa de verdade cuida do seu crédito</p>
+              </div>
+            </li>
+
+            <li class="card-info" data-anim="fade-up">
+              <img loading="lazy" decoding="async"
+                class="card-info__icon"
+                src="assets/icons/gift.svg"
+                alt=""
+                aria-hidden="true"
+                width="42"
+                height="42"
+              />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Brinde garantido</h3>
+                <p class="card-info__text">Fechou, ganhou. Sem pegadinha, sem sorteio.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           03 — SOBRE (Figma 3270:535)
+           ================================================================== -->
+      <section class="sobre section" id="sobre" aria-labelledby="sobre-titulo">
+        <img loading="lazy" decoding="async"
+          class="deco sobre__frame"
+          src="assets/img/sobre/shape-frame.svg"
+          alt=""
+          aria-hidden="true"
+        />
+
+        <div class="container container--wide">
+          <div class="sobre__card">
+            <div class="sobre__text">
+              <div class="sobre__head">
+                <h2 id="sobre-titulo" class="sobre__title" data-anim="lines">
+                  Lugar de gente feliz há 16 anos
+                </h2>
+                <p class="sobre__lead" data-anim="fade-up">
+                  A Super Money nasceu para simplificar o acesso ao crédito com um
+                  atendimento verdadeiramente humano. Ao longo de 16 anos,
+                  construímos relacionamento com mais de 20 bancos parceiros para
+                  sempre buscar a melhor taxa e a aprovação mais rápida para cada
+                  cliente — sem desistir até o último minuto. Hoje, atendemos
+                  clientes em todo o Brasil, com lojas físicas em Aracruz-ES,
+                  Castelo-ES e Campos dos Goytacazes-RJ para quem prefere um
+                  atendimento presencial.
+                </p>
+              </div>
+
+              <a class="btn" href="#unidades" data-anim="fade-up"
+                >Conheça nossas unidades</a
+              >
+            </div>
+
+            <div class="sobre__photo">
+              <img decoding="async"
+                src="assets/img/sobre/fachada-loja.webp"
+                alt="Fachada da loja Super Money com o letreiro e os telefones de contato"
+                width="941"
+                height="1672"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           04 — SOLUÇÕES DE CRÉDITO (Figma 3270:545)
+           ================================================================== -->
+      <section class="sols section" id="produtos" aria-labelledby="sols-titulo">
+        <div class="container">
+          <header class="sols__head">
+            <h2 id="sols-titulo" class="sols__title" data-anim="lines">
+              Nossas soluções de crédito
+            </h2>
+            <p class="sols__lead" data-anim="fade-up">
+              Tem uma opção pensada pra cada momento da sua vida.
+            </p>
+          </header>
+
+          <ul class="sols__grid">
+            <li class="card-info sols__item--quarto" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Consignado INSS</h3>
+                <p class="card-info__text">
+                  Dinheiro liberado direto no seu benefício, com as menores taxas do
+                  mercado.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sols__item--quarto" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Consignado CLT</h3>
+                <p class="card-info__text">
+                  Empréstimo com desconto em folha para quem tem carteira assinada.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sols__item--quarto" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Servidor Público</h3>
+                <p class="card-info__text">
+                  Condições especiais para federais, estaduais, municipais e forças
+                  armadas.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sols__item--quarto" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">FGTS Saque-Aniversário</h3>
+                <p class="card-info__text">
+                  Antecipe o saldo do seu FGTS com taxas baixas.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sols__item--terco" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Cartão Consignado</h3>
+                <p class="card-info__text">
+                  Transforme até 70% do limite do cartão em dinheiro.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sols__item--terco" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Portabilidade</h3>
+                <p class="card-info__text">
+                  Troque de banco, reduza a taxa e ainda libere um valor extra.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sols__item--terco" data-anim="fade-up">
+              <img loading="lazy" decoding="async" class="card-info__icon" src="assets/icons/seal-check-solucoes.svg" alt="" aria-hidden="true" width="46" height="46" />
+              <div class="card-info__body">
+                <h3 class="card-info__title">Limpa Nome</h3>
+                <p class="card-info__text">
+                  Remova apontamentos do SPC e Serasa por amparo legal.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           05 — COMO FUNCIONA (Figma 3270:607)
+           ================================================================== -->
+      <section class="como section" aria-labelledby="como-titulo">
+        <div class="deco como__glow" aria-hidden="true"></div>
+        <img loading="lazy" decoding="async" class="deco como__frame como__frame--dir" src="assets/img/como/shape-rect-5.svg" alt="" aria-hidden="true" />
+        <img loading="lazy" decoding="async" class="deco como__frame como__frame--esq" src="assets/img/como/shape-rect-5.svg" alt="" aria-hidden="true" />
+
+        <div class="container como__inner">
+          <h2 id="como-titulo" class="como__title" data-anim="lines">Como funciona</h2>
+
+          <ol class="como__grid">
+            <li class="passo" data-anim="fade-up">
+              <span class="passo__num" aria-hidden="true">1</span>
+              <span class="passo__badge">Passo 1</span>
+              <div class="passo__body">
+                <img loading="lazy" decoding="async" class="passo__icon" src="assets/icons/phone.svg" alt="" aria-hidden="true" width="40" height="40" />
+                <div class="passo__text">
+                  <h3 class="passo__title">Fale com a gente</h3>
+                  <p class="passo__desc">
+                    chame no WhatsApp ou venha até uma de nossas lojas.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="passo" data-anim="fade-up">
+              <span class="passo__num" aria-hidden="true">2</span>
+              <span class="passo__badge">Passo 2</span>
+              <div class="passo__body">
+                <img loading="lazy" decoding="async" class="passo__icon" src="assets/icons/calculator.svg" alt="" aria-hidden="true" width="40" height="40" />
+                <div class="passo__text">
+                  <h3 class="passo__title">Simule sem compromisso</h3>
+                  <p class="passo__desc passo__desc--estreita">
+                    mostramos as melhores condições disponíveis para o seu perfil.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="passo" data-anim="fade-up">
+              <span class="passo__num" aria-hidden="true">3</span>
+              <span class="passo__badge">Passo 3</span>
+              <div class="passo__body">
+                <img loading="lazy" decoding="async" class="passo__icon" src="assets/icons/file-doc.svg" alt="" aria-hidden="true" width="40" height="40" />
+                <div class="passo__text">
+                  <h3 class="passo__title">Envie seus documentos</h3>
+                  <p class="passo__desc">
+                    processo rápido, simples e orientado por um consultor de verdade.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="passo" data-anim="fade-up">
+              <span class="passo__num" aria-hidden="true">4</span>
+              <span class="passo__badge">Passo 4</span>
+              <div class="passo__body">
+                <img loading="lazy" decoding="async" class="passo__icon" src="assets/icons/currency-dollar.svg" alt="" aria-hidden="true" width="40" height="40" />
+                <div class="passo__text">
+                  <h3 class="passo__title">Receba seu dinheiro</h3>
+                  <p class="passo__desc passo__desc--estreita">
+                    aprovado, o valor cai na sua conta.
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           06 — BRINDE (Figma 3270:1360)
+           ================================================================== -->
+      <section class="brinde section" aria-labelledby="brinde-titulo">
+        <div class="brinde__bg" aria-hidden="true">
+          <img decoding="async"
+            src="assets/img/brinde/brinde-fundo.webp"
+            alt=""
+            width="1920"
+            height="800"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="brinde__inner">
+          <div class="brinde__head">
+            <h2 id="brinde-titulo" class="brinde__title" data-anim="lines">
+              Fechou, ganhou de verdade
+            </h2>
+            <p class="brinde__lead" data-anim="fade-up">
+              Ao fechar seu crédito com a Super Money, você já sai com brinde
+              garantido — liquidificador, ventilador, batedeira e outras surpresas.
+              Não é sorteio, é presente de verdade pra quem confia na gente.
+            </p>
+          </div>
+
+          <a
+            class="btn"
+            data-anim="fade-up"
+            href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20saber%20do%20brinde."
+            target="_blank"
+            rel="noopener"
+            >Quero meu brinde</a
+          >
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           07 — DEPOIMENTOS (Figma 3270:681)
+
+           ATENÇÃO — CONTEÚDO PLACEHOLDER: nomes, notas e textos vieram do
+           Figma, que está com lorem ipsum. Substituir pelos depoimentos
+           reais. A estrutura de cada <li> é a mesma; basta trocar avatar,
+           nome, quantidade de estrelas, resumo e texto.
+           ================================================================== -->
+      <section class="depo section" id="depoimentos" aria-labelledby="depo-titulo">
+        <div class="container">
+          <h2 id="depo-titulo" class="depo__title" data-anim="lines">
+            Quem já veio pra Super Money, recomenda
+          </h2>
+
+          <div
+            class="depo__viewport"
+            role="group"
+            aria-roledescription="carrossel"
+            aria-label="Depoimentos de clientes"
+          >
+            <ul class="depo__track">
+              <li class="depo__card" aria-roledescription="slide">
+                <header class="depo__head">
+                  <div class="depo__pessoa">
+                    <img decoding="async" class="depo__avatar" src="assets/img/depoimentos/avatar-72.webp" alt="" width="72" height="72" loading="lazy" />
+                    <p class="depo__nome">Leo</p>
+                  </div>
+                  <div class="depo__estrelas" role="img" aria-label="5 de 5 estrelas">
+                    <img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" />
+                  </div>
+                </header>
+                <div class="depo__corpo">
+                  <p class="depo__resumo">Lorem ipsum dolor sit amet</p>
+                  <p class="depo__texto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus
+                    nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed
+                    magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                    Faucibus venenatis felis id augue sit cursus pellentesque enim
+                    arcu. Elementum felis magna pretium in tincidunt. Suspendisse
+                    sed magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                  </p>
+                </div>
+              </li>
+
+              <li class="depo__card" aria-roledescription="slide">
+                <header class="depo__head">
+                  <div class="depo__pessoa">
+                    <img decoding="async" class="depo__avatar" src="assets/img/depoimentos/avatar-60.webp" alt="" width="72" height="72" loading="lazy" />
+                    <p class="depo__nome">Igor</p>
+                  </div>
+                  <div class="depo__estrelas" role="img" aria-label="5 de 5 estrelas">
+                    <img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" />
+                  </div>
+                </header>
+                <div class="depo__corpo">
+                  <p class="depo__resumo">Lorem ipsum dolor sit amet</p>
+                  <p class="depo__texto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus
+                    nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed
+                    magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                    Faucibus venenatis felis id augue sit cursus pellentesque enim
+                    arcu. Elementum felis magna pretium in tincidunt. Suspendisse
+                    sed magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                  </p>
+                </div>
+              </li>
+
+              <li class="depo__card" aria-roledescription="slide">
+                <header class="depo__head">
+                  <div class="depo__pessoa">
+                    <img decoding="async" class="depo__avatar" src="assets/img/depoimentos/avatar-72.webp" alt="" width="72" height="72" loading="lazy" />
+                    <p class="depo__nome">Leo</p>
+                  </div>
+                  <div class="depo__estrelas" role="img" aria-label="5 de 5 estrelas">
+                    <img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" />
+                  </div>
+                </header>
+                <div class="depo__corpo">
+                  <p class="depo__resumo">Lorem ipsum dolor sit amet</p>
+                  <p class="depo__texto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus
+                    nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed
+                    magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                    Faucibus venenatis felis id augue sit cursus pellentesque enim
+                    arcu. Elementum felis magna pretium in tincidunt. Suspendisse
+                    sed magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                  </p>
+                </div>
+              </li>
+
+              <li class="depo__card" aria-roledescription="slide">
+                <header class="depo__head">
+                  <div class="depo__pessoa">
+                    <img decoding="async" class="depo__avatar" src="assets/img/depoimentos/avatar-60.webp" alt="" width="72" height="72" loading="lazy" />
+                    <p class="depo__nome">Igor</p>
+                  </div>
+                  <div class="depo__estrelas" role="img" aria-label="5 de 5 estrelas">
+                    <img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" /><img loading="lazy" decoding="async" src="assets/icons/star.svg" alt="" />
+                  </div>
+                </header>
+                <div class="depo__corpo">
+                  <p class="depo__resumo">Lorem ipsum dolor sit amet</p>
+                  <p class="depo__texto">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus
+                    nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed
+                    magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                    Faucibus venenatis felis id augue sit cursus pellentesque enim
+                    arcu. Elementum felis magna pretium in tincidunt. Suspendisse
+                    sed magna eget nibh in turpis. Consequat duis diam lacus arcu.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="depo__controles">
+            <button class="depo__seta depo__seta--prev" type="button" aria-label="Depoimento anterior">
+              <img loading="lazy" decoding="async" src="assets/icons/chevron.svg" alt="" aria-hidden="true" />
+            </button>
+            <div class="depo__pontos" role="tablist" aria-label="Escolher depoimento"></div>
+            <button class="depo__seta depo__seta--next" type="button" aria-label="Próximo depoimento">
+              <img loading="lazy" decoding="async" src="assets/icons/chevron.svg" alt="" aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           08 — BANCOS PARCEIROS (Figma 3270:758)
+           ================================================================== -->
+      <section class="bancos section" aria-labelledby="bancos-titulo">
+        <div class="container">
+          <header class="bancos__head">
+            <h2 id="bancos-titulo" class="bancos__title" data-anim="lines">
+              Trabalhamos com os maiores bancos do país
+            </h2>
+            <p class="bancos__lead" data-anim="fade-up">
+              Mais de 20 instituições parceiras para garantir sempre a melhor taxa
+              pra você.
+            </p>
+          </header>
+        </div>
+
+        <div class="bancos__esteira">
+          <ul class="bancos__track">
+              <li class="bancos__item bancos__item--bb">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/banco-do-brasil.svg" alt="Banco do Brasil" />
+              </li>
+              <li class="bancos__item bancos__item--caixa">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/caixa.svg" alt="Caixa" />
+              </li>
+              <li class="bancos__item bancos__item--itau">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/itau.svg" alt="Itaú" />
+              </li>
+              <li class="bancos__item bancos__item--santander">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/santander.svg" alt="Santander" />
+              </li>
+              <li class="bancos__item bancos__item--inter">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/inter.svg" alt="Banco Inter" />
+              </li>
+              <li class="bancos__item bancos__item--btg">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/btg-pactual.svg" alt="BTG Pactual" />
+              </li>
+              <li class="bancos__item bancos__item--bradesco">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/bradesco.svg" alt="Bradesco" />
+              </li>
+              <li class="bancos__item bancos__item--nubank">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/nubank.svg" alt="Nubank" />
+              </li>
+              <li class="bancos__item bancos__item--c6">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/c6-bank.svg" alt="C6 Bank" />
+              </li>
+            <!-- segunda cópia: só existe para o loop não ter costura.
+                 aria-hidden para os leitores de tela não repetirem a lista. -->
+              <li aria-hidden="true" class="bancos__item bancos__item--bb">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/banco-do-brasil.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--caixa">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/caixa.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--itau">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/itau.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--santander">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/santander.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--inter">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/inter.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--btg">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/btg-pactual.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--bradesco">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/bradesco.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--nubank">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/nubank.svg" alt="" />
+              </li>
+              <li aria-hidden="true" class="bancos__item bancos__item--c6">
+                <img loading="lazy" decoding="async" src="assets/img/bancos/c6-bank.svg" alt="" />
+              </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           09 — PRODUTO: CONSIGNADO INSS (Figma 3270:798)
+           Template das 4 seções de produto — ver 10-produto.css
+           ================================================================== -->
+      <section class="prod section" id="inss" aria-labelledby="inss-titulo">
+        <div class="deco prod__glow" aria-hidden="true"></div>
+        <img loading="lazy" decoding="async" class="deco prod__frame prod__frame--esq" src="assets/img/como/shape-rect-5.svg" alt="" aria-hidden="true" />
+        <img loading="lazy" decoding="async" class="deco prod__frame prod__frame--dir" src="assets/img/como/shape-rect-5.svg" alt="" aria-hidden="true" />
+
+        <div class="container container--narrow">
+          <div class="prod__inner">
+            <header class="prod__head">
+              <h2 id="inss-titulo" class="prod__title" data-anim="lines">
+                Empréstimo Consignado para Aposentados e Pensionistas do INSS
+              </h2>
+              <p class="prod__lead" data-anim="fade-up">
+                Dinheiro liberado direto no seu benefício, com parcelas fixas e as
+                menores taxas do mercado.
+              </p>
+            </header>
+
+            <div class="prod__corpo">
+              <div class="prod__grade">
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/magnifying-glass.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Como funciona</h3>
+                <p class="prod__card-desc">O valor é descontado direto do seu benefício do INSS, com parcelas fixas até o fim do contrato. Não é preciso ter conta no banco que libera o crédito, e você pode quitar antes com desconto.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/user.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Quem pode contratar</h3>
+                <p class="prod__card-desc">Aposentados e pensionistas do INSS, incluindo novos entrantes com pelo menos 90 dias de benefício. Também atendemos quem já tem consignado ativo e quer portabilidade.</p>
+              </div>
+            </li>
+                </ul>
+
+                <div class="prod__destaque" data-anim="fade-up">
+                  <div class="prod__destaque-texto">
+                    <h3 class="prod__destaque-titulo">Por que Super Money</h3>
+                    <p class="prod__destaque-desc">
+                      16 anos de experiência negociando com mais de 20 bancos
+                      parceiros, buscando sempre a melhor taxa e aprovação para o
+                      seu perfil — com atendimento humano do início ao fim.
+                    </p>
+                  </div>
+
+                  <div class="prod__arte prod__chips" aria-hidden="true">
+                    <div class="prod__chip">
+                      <img loading="lazy" decoding="async" src="assets/img/produtos/chip-baixa.svg" alt="" width="59" height="59" />
+                      <div class="prod__chip-info">
+                        <span class="prod__chip-nome">Menos Taxas</span>
+                        <span class="prod__chip-taxa prod__chip-taxa--baixa" data-taxa="-4.29">-4.29%</span>
+                      </div>
+                    </div>
+                    <div class="prod__chip">
+                      <img loading="lazy" decoding="async" src="assets/img/produtos/chip-alta.svg" alt="" width="59" height="59" />
+                      <div class="prod__chip-info">
+                        <span class="prod__chip-nome">Dinheiro rápido</span>
+                        <span class="prod__chip-taxa prod__chip-taxa--alta" data-taxa="+7.13">+7.13%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/question.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Negativado pode contratar consignado INSS?</h3>
+                <p class="prod__card-desc">Sim, o consignado INSS não consulta SPC/Serasa.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/currency-dollar-o.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Em quanto tempo o dinheiro cai na conta?</h3>
+                <p class="prod__card-desc">O processo é rápido, com liberação em poucos dias após a aprovação.</p>
+              </div>
+            </li>
+                </ul>
+              </div>
+
+              <a class="btn" data-anim="fade-up"
+                 href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20simular%20consignado%20INSS."
+                 target="_blank" rel="noopener">Simular consignado INSS</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           10 — PRODUTO: CRÉDITO DO TRABALHADOR / CLT (Figma 3270:960)
+           ================================================================== -->
+      <section class="prod prod--claro section" id="clt" aria-labelledby="clt-titulo">
+        <div class="container container--narrow">
+          <div class="prod__inner">
+            <header class="prod__head">
+              <h2 id="clt-titulo" class="prod__title" data-anim="lines">
+                Crédito do Trabalhador: Empréstimo CLT com Desconto em Folha
+              </h2>
+              <p class="prod__lead prod__lead--estreito" data-anim="fade-up">
+                Se você tem carteira assinada, contrate com taxas menores e
+                aprovação rápida — mesmo estando negativado.
+              </p>
+            </header>
+
+            <div class="prod__corpo">
+              <div class="prod__grade">
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/magnifying-glass.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Como funciona</h3>
+                <p class="prod__card-desc">As parcelas são descontadas direto da sua folha de pagamento, sem boletos para lembrar. Taxas menores que o empréstimo pessoal comum, por causa do menor risco para o banco.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/user.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Quem pode contratar</h3>
+                <p class="prod__card-desc">Trabalhadores CLT com carteira assinada. Diferente do INSS, esse público costuma resolver tudo online, com autocontratação simples e rápida.</p>
+              </div>
+            </li>
+                </ul>
+
+                <div class="prod__destaque" data-anim="fade-up">
+                  <div class="prod__destaque-texto">
+                    <h3 class="prod__destaque-titulo">Por que Super Money</h3>
+                    <p class="prod__destaque-desc">
+                      Buscamos entre os principais bancos parceiros a taxa
+                      personalizada ao seu perfil, com acompanhamento humano sempre
+                      que precisar.
+                    </p>
+                  </div>
+
+                  <div class="prod__arte prod__arte--tablet" aria-hidden="true">
+                    <img loading="lazy" decoding="async" class="tablet__arco tablet__arco--1" src="assets/img/produtos/tablet/arco-1.svg" alt="" />
+                    <img loading="lazy" decoding="async" class="tablet__arco tablet__arco--2" src="assets/img/produtos/tablet/arco-2.svg" alt="" />
+
+                    <div class="tablet">
+                      <div class="tablet__topo">
+                        <div class="tablet__linha">
+                          <span class="tablet__marca">
+                            <img loading="lazy" decoding="async" src="assets/icons/external-link.svg" alt="" />Super Money
+                          </span>
+                          <img loading="lazy" decoding="async" class="tablet__chevron" src="assets/icons/chevron-s.svg" alt="" />
+                        </div>
+                        <span class="tablet__data">
+                          <img loading="lazy" decoding="async" src="assets/icons/calendar-todo.svg" alt="" />4 de Agosto de 2026
+                        </span>
+                      </div>
+
+                      <div class="tablet__tela">
+                        <ul class="tablet__pills">
+                          <li class="tablet__pill">Bancos parceiros <img loading="lazy" decoding="async" src="assets/icons/information.svg" alt="" /></li>
+                          <li class="tablet__pill">Taxa personalizada <img loading="lazy" decoding="async" src="assets/icons/information.svg" alt="" /></li>
+                          <li class="tablet__pill">Atendimento humano <img loading="lazy" decoding="async" src="assets/icons/information.svg" alt="" /></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/question.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Quem está negativado pode contratar?</h3>
+                <p class="prod__card-desc">Sim, o Crédito do Trabalhador aceita negativados — a análise considera outros critérios além do nome sujo.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/currency-dollar-o.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">O que acontece se eu for demitido?</h3>
+                <p class="prod__card-desc">As parcelas restantes são descontadas da rescisão; se não cobrir tudo, o saldo continua sendo pago normalmente.</p>
+              </div>
+            </li>
+                </ul>
+              </div>
+
+              <a class="btn" data-anim="fade-up"
+                 href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20simular%20consignado%20CLT."
+                 target="_blank" rel="noopener">Simular consignado CLT</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           11 — PRODUTO: SERVIDOR PÚBLICO (Figma 3270:869)
+           ================================================================== -->
+      <section class="prod section" id="servidor" aria-labelledby="servidor-titulo">
+        <div class="deco prod__glow" aria-hidden="true"></div>
+        <img loading="lazy" decoding="async" class="deco prod__frame prod__frame--esq" src="assets/img/como/shape-rect-5.svg" alt="" aria-hidden="true" />
+        <img loading="lazy" decoding="async" class="deco prod__frame prod__frame--dir" src="assets/img/como/shape-rect-5.svg" alt="" aria-hidden="true" />
+
+        <div class="container container--narrow">
+          <div class="prod__inner">
+            <header class="prod__head">
+              <h2 id="servidor-titulo" class="prod__title" data-anim="lines">
+                Consignado para Servidor Público
+              </h2>
+              <p class="prod__lead" data-anim="fade-up">
+                Condições especiais para servidores federais, estaduais, municipais
+                e forças armadas.
+              </p>
+            </header>
+
+            <div class="prod__corpo">
+              <div class="prod__grade">
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/magnifying-glass.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Como funciona</h3>
+                <p class="prod__card-desc">O desconto é feito direto na folha de pagamento do órgão, com taxas reduzidas e prazos flexíveis.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/user.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Quem pode contratar</h3>
+                <p class="prod__card-desc">Servidores públicos federais, estaduais e municipais, além de integrantes das Forças Armadas.</p>
+              </div>
+            </li>
+                </ul>
+
+                <div class="prod__destaque" data-anim="fade-up">
+                  <div class="prod__destaque-texto">
+                    <h3 class="prod__destaque-titulo">Por que Super Money</h3>
+                    <p class="prod__destaque-desc">
+                      16 anos atendendo servidores públicos, com relacionamento
+                      direto com os principais bancos consignatários de cada órgão.
+                    </p>
+                  </div>
+
+                  <div class="prod__arte prod__arte--orbita" aria-hidden="true">
+                    <img loading="lazy" decoding="async" class="orbita__nucleo" src="assets/img/produtos/orbita/nucleo.svg" alt="" />
+                      <div class="orbita__braco orbita__braco--1">
+                        <span class="orbita__pos orbita__pos--1"><span class="orbita__sat"><span class="orbita__corpo">
+                          <img loading="lazy" decoding="async" class="orbita__disco" src="assets/img/produtos/orbita/disco-1.svg" alt="" />
+                          <span class="orbita__logo"><img loading="lazy" decoding="async" src="assets/img/produtos/orbita/logo-1.svg" alt="" /></span>
+                          </span></span></span>
+                      </div>
+                      <div class="orbita__braco orbita__braco--2">
+                        <span class="orbita__pos orbita__pos--2"><span class="orbita__sat"><span class="orbita__corpo">
+                          <img loading="lazy" decoding="async" class="orbita__disco" src="assets/img/produtos/orbita/disco-2.svg" alt="" />
+                          <span class="orbita__logo"><img loading="lazy" decoding="async" src="assets/img/produtos/orbita/logo-2.svg" alt="" /></span>
+                          </span></span></span>
+                      </div>
+                      <div class="orbita__braco orbita__braco--3">
+                        <span class="orbita__pos orbita__pos--3"><span class="orbita__sat"><span class="orbita__corpo">
+                          <img loading="lazy" decoding="async" class="orbita__disco" src="assets/img/produtos/orbita/disco-3.svg" alt="" />
+                          <span class="orbita__logo"><img loading="lazy" decoding="async" src="assets/img/produtos/orbita/logo-3.svg" alt="" /></span>
+                          </span></span></span>
+                      </div>
+                      <div class="orbita__braco orbita__braco--4">
+                        <span class="orbita__pos orbita__pos--4"><span class="orbita__sat"><span class="orbita__corpo">
+                          <img loading="lazy" decoding="async" class="orbita__disco" src="assets/img/produtos/orbita/disco-4.svg" alt="" />
+                          <span class="orbita__logo"><img loading="lazy" decoding="async" src="assets/img/produtos/orbita/logo-4.svg" alt="" /></span>
+                          </span></span></span>
+                      </div>
+                  </div>
+                </div>
+
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/question.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Servidor municipal de qualquer cidade pode contratar?</h3>
+                <p class="prod__card-desc">Depende do convênio do banco com o município; nossa equipe verifica a disponibilidade no seu caso.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/currency-dollar-o.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">A taxa é igual para todos os órgãos?</h3>
+                <p class="prod__card-desc">Não, varia de acordo com o órgão e o banco consignatário — simulamos o melhor cenário pra você.</p>
+              </div>
+            </li>
+                </ul>
+              </div>
+
+              <a class="btn" data-anim="fade-up"
+                 href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20simular%20para%20servidor%20p%C3%BAblico."
+                 target="_blank" rel="noopener">Simular para servidor público</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           12 — PRODUTO: LIMPA NOME (Figma 3270:1042)
+           ================================================================== -->
+      <section class="prod prod--claro section" id="limpa-nome" aria-labelledby="limpa-titulo">
+        <div class="container container--narrow">
+          <div class="prod__inner">
+            <header class="prod__head">
+              <h2 id="limpa-titulo" class="prod__title" data-anim="lines">
+                Limpa Nome: Remova Apontamentos de SPC e Serasa
+              </h2>
+              <p class="prod__lead prod__lead--estreito" data-anim="fade-up">
+                Remoção de negativações por amparo legal, para você voltar a ter
+                crédito.
+              </p>
+            </header>
+
+            <div class="prod__corpo">
+              <div class="prod__grade">
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/magnifying-glass.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Como funciona</h3>
+                <p class="prod__card-desc">Através de uma associação parceira, a Super Money atua para remover apontamentos de SPC, Serasa, Boa Vista e Cartório de Protesto, com base em lei que ampara o consumidor.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/user.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Quem pode contratar</h3>
+                <p class="prod__card-desc">Qualquer pessoa negativada que queira regularizar seu nome para voltar a ter acesso a crédito.</p>
+              </div>
+            </li>
+                </ul>
+
+                <div class="prod__destaque" data-anim="fade-up">
+                  <div class="prod__destaque-texto">
+                    <h3 class="prod__destaque-titulo">Por que Super Money</h3>
+                    <p class="prod__destaque-desc">
+                      Processo orientado do início ao fim, com atendimento humano
+                      explicando cada etapa.
+                    </p>
+                  </div>
+
+                  <div class="prod__arte prod__arte--conversa" aria-hidden="true">
+                    <div class="zap">
+                      <div class="zap__tela">
+                        <div class="zap__contato">
+                          <span class="zap__nome">Matheus C.</span>
+                          <span class="zap__visto">Visto por último ás 08:40</span>
+                        </div>
+
+                        <div class="zap__msg">
+                          <span class="zap__hora">08:39</span>
+                          <p class="zap__balao zap__balao--1">
+                            Oi, Quero fazer orçamento sobre a limpeza do meu CPF.
+                          </p>
+                        </div>
+
+                        <div class="zap__msg zap__msg--resposta">
+                          <span class="zap__hora">08:39</span>
+                          <p class="zap__balao zap__balao--2">
+                            Olá, tudo bem? Obrigada pelo contato. Sou do time da Super
+                            Money e serei responsável pelo seu atendimento!
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <span class="zap__selo zap__selo--whats">
+                      <img decoding="async" src="assets/img/produtos/conversa/badge-whats.webp" alt="" width="256" height="256" loading="lazy" />
+                    </span>
+                    <span class="zap__selo zap__selo--sm">
+                      <img decoding="async" src="assets/img/produtos/conversa/badge-sm.webp" alt="" width="256" height="256" loading="lazy" />
+                    </span>
+                  </div>
+                </div>
+
+                <ul class="prod__dupla">
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/question.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Isso quita minha dívida?</h3>
+                <p class="prod__card-desc">Não, o serviço trata da remoção do apontamento; a negociação da dívida em si é orientada à parte.</p>
+              </div>
+            </li>
+            <li class="prod__card">
+              <img loading="lazy" decoding="async" class="prod__card-icone" src="assets/icons/currency-dollar-o.svg" alt="" aria-hidden="true" width="40" height="40" />
+              <div class="prod__card-texto">
+                <h3 class="prod__card-titulo">Quanto tempo leva?</h3>
+                <p class="prod__card-desc">Varia de caso a caso; nossa equipe informa o prazo estimado na simulação.</p>
+              </div>
+            </li>
+                </ul>
+              </div>
+
+              <a class="btn" data-anim="fade-up"
+                 href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20limpar%20meu%20nome."
+                 target="_blank" rel="noopener">Quero limpar meu nome</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           13 — UNIDADES  (Figma 3270:1253)
+           ================================================================== -->
+      <section class="section unidades" id="unidades" aria-labelledby="unidades-title">
+        <div class="container">
+          <div class="unidades__inner">
+            <h2 class="unidades__title" id="unidades-title">Venha nos visitar ou fale pelo WhatsApp</h2>
+
+            <div class="unidades__corpo">
+              <ul class="unidades__grade">
+            <li class="unidade">
+              <div class="unidade__topo">
+                <img decoding="async" class="unidade__pino" src="assets/icons/map-pin.svg" alt="" aria-hidden="true" width="65" height="65" loading="lazy" />
+                <div class="unidade__texto">
+                  <h3 class="unidade__nome">Unidade Aracruz-ES</h3>
+                  <ul class="unidade__fones">
+                  <li class="unidade__fone">
+                    <img decoding="async" src="assets/icons/phone-unidade.svg" alt="Telefone" width="24" height="24" loading="lazy" />
+                    <a href="tel:+5527999623772">(27) 99962-3772</a>
+                  </li>
+                  <li class="unidade__fone">
+                    <img decoding="async" src="assets/icons/phone-unidade.svg" alt="Telefone" width="24" height="24" loading="lazy" />
+                    <a href="tel:+552732564628">(27) 3256-4628</a>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="unidade__horario">Segunda a sexta, das 8h às 18h. Sábado, das 8h às 12h.</p>
+            </li>
+            <li class="unidade">
+              <div class="unidade__topo">
+                <img decoding="async" class="unidade__pino" src="assets/icons/map-pin.svg" alt="" aria-hidden="true" width="65" height="65" loading="lazy" />
+                <div class="unidade__texto">
+                  <h3 class="unidade__nome">Unidade Castelo-ES</h3>
+                  <ul class="unidade__fones">
+                  <li class="unidade__fone">
+                    <img decoding="async" src="assets/icons/phone-unidade.svg" alt="Telefone" width="24" height="24" loading="lazy" />
+                    <a href="tel:+5528998823772">(28) 99882-3772</a>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="unidade__horario">Segunda a sexta, das 8h às 18h. Sábado, das 8h às 12h.</p>
+            </li>
+            <li class="unidade">
+              <div class="unidade__topo">
+                <img decoding="async" class="unidade__pino" src="assets/icons/map-pin.svg" alt="" aria-hidden="true" width="65" height="65" loading="lazy" />
+                <div class="unidade__texto">
+                  <h3 class="unidade__nome">Unidade Campos dos Goytacazes-RJ</h3>
+                  <ul class="unidade__fones">
+                  <li class="unidade__fone">
+                    <img decoding="async" src="assets/icons/phone-unidade.svg" alt="Telefone" width="24" height="24" loading="lazy" />
+                    <a href="tel:+5522999105014">(22) 99910-5014</a>
+                  </li>
+                  </ul>
+                </div>
+              </div>
+              <p class="unidade__horario">Segunda a sexta, das 8h às 18h. Sábado, das 8h às 12h.</p>
+            </li>
+              </ul>
+
+              <a class="btn" data-anim="fade-up"
+                 href="https://wa.me/5527999623772?text=Ol%C3%A1!%20Quero%20falar%20com%20a%20Super%20Money."
+                 target="_blank" rel="noopener">Falar no WhatsApp agora</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           14 — FAQ  (Figma 3270:1318)
+           ================================================================== -->
+      <section class="section faq" id="faq" aria-labelledby="faq-title">
+        <div class="container">
+          <div class="faq__inner">
+            <h2 class="faq__title" id="faq-title">Perguntas Frequentes</h2>
+
+            <ul class="faq__lista">
+            <li class="faq__item">
+              <h3 class="faq__titulo">
+                <button class="faq__botao" type="button" aria-expanded="true" aria-controls="faq-painel-1" id="faq-botao-1">
+                  <span>Quem está negativado pode contratar?</span>
+                  <span class="faq__seta" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17L16 21L20 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+              </h3>
+              <div class="faq__painel" id="faq-painel-1" role="region" aria-labelledby="faq-botao-1">
+                <p class="faq__resposta">Sim. A maioria dos nossos produtos não consulta SPC/Serasa.</p>
+              </div>
+            </li>
+            <li class="faq__item">
+              <h3 class="faq__titulo">
+                <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-painel-2" id="faq-botao-2">
+                  <span>Quanto tempo leva para o dinheiro cair na conta?</span>
+                  <span class="faq__seta" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17L16 21L20 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+              </h3>
+              <div class="faq__painel" id="faq-painel-2" role="region" aria-labelledby="faq-botao-2">
+                <p class="faq__resposta">Varia conforme o produto e o banco. Na simulação nossa equipe informa o prazo estimado do seu caso.</p>
+              </div>
+            </li>
+            <li class="faq__item">
+              <h3 class="faq__titulo">
+                <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-painel-3" id="faq-botao-3">
+                  <span>Preciso ir até a loja para contratar?</span>
+                  <span class="faq__seta" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17L16 21L20 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+              </h3>
+              <div class="faq__painel" id="faq-painel-3" role="region" aria-labelledby="faq-botao-3">
+                <p class="faq__resposta">Não. Todo o atendimento pode ser feito pelo WhatsApp, do início ao fim — mas você é bem-vindo em qualquer uma das nossas unidades.</p>
+              </div>
+            </li>
+            <li class="faq__item">
+              <h3 class="faq__titulo">
+                <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-painel-4" id="faq-botao-4">
+                  <span>A Super Money atende qual região?</span>
+                  <span class="faq__seta" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17L16 21L20 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+              </h3>
+              <div class="faq__painel" id="faq-painel-4" role="region" aria-labelledby="faq-botao-4">
+                <p class="faq__resposta">Temos unidades em Aracruz e Castelo, no Espírito Santo, e em Campos dos Goytacazes, no Rio de Janeiro. Pelo WhatsApp atendemos todo o Brasil.</p>
+              </div>
+            </li>
+            <li class="faq__item">
+              <h3 class="faq__titulo">
+                <button class="faq__botao" type="button" aria-expanded="false" aria-controls="faq-painel-5" id="faq-botao-5">
+                  <span>Quais produtos vocês oferecem?</span>
+                  <span class="faq__seta" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17L16 21L20 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                </button>
+              </h3>
+              <div class="faq__painel" id="faq-painel-5" role="region" aria-labelledby="faq-botao-5">
+                <p class="faq__resposta">Consignado INSS, Crédito do Trabalhador (CLT), crédito para servidor público e Limpa Nome, entre outras soluções de crédito.</p>
+              </div>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SM:SECTIONS -->
+    </main>
+
+    <!-- ====================================================================
+         15 — RODAPÉ  (Figma 3270:1367)
+         ==================================================================== -->
+    <footer class="rodape">
+      <div class="container">
+        <div class="rodape__inner">
+          <div class="rodape__topo">
+            <div class="rodape__marca">
+              <img loading="lazy" decoding="async" class="rodape__logo" src="assets/img/logo/logo-supermoney.svg" alt="Super Money" width="178" height="101" />
+              <p class="rodape__sobre">Correspondente bancário há 16 anos, atuando com as principais instituições financeiras do país.</p>
+            </div>
+
+            <nav class="rodape__nav" aria-label="Rodapé">
+              <ul>
+              <li><a class="rodape__link" href="#inicio">Início</a></li>
+              <li><a class="rodape__link" href="#inss">Produtos</a></li>
+              <li><a class="rodape__link" href="#sobre">Sobre Nós</a></li>
+              <li><a class="rodape__link" href="#depoimentos">Depoimentos</a></li>
+              <li><a class="rodape__link" href="#unidades">Unidades</a></li>
+              <li><a class="rodape__link" href="#faq">FAQ</a></li>
+              </ul>
+            </nav>
+
+            <ul class="rodape__redes">
+              <li><a class="rodape__link" href="https://www.instagram.com/" target="_blank" rel="noopener"><img decoding="async" src="assets/icons/instagram.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy" />Instagram</a></li>
+              <li><a class="rodape__link" href="https://www.facebook.com/" target="_blank" rel="noopener"><img decoding="async" src="assets/icons/facebook.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy" />Facebook</a></li>
+              <li><a class="rodape__link" href="https://wa.me/5527999623772" target="_blank" rel="noopener"><img decoding="async" src="assets/icons/whatsapp.svg" alt="" aria-hidden="true" width="24" height="24" loading="lazy" />WhatsApp</a></li>
+            </ul>
+          </div>
+
+          <p class="rodape__base">© 2026 Super Money. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Vendor -->
+    <script src="vendor/gsap.min.js"></script>
+    <script src="vendor/ScrollTrigger.min.js"></script>
+    <script src="vendor/SplitText.min.js"></script>
+    <script src="vendor/Draggable.min.js"></script>
+    <script src="vendor/lenis.min.js"></script>
+
+    <!-- App -->
+    <script src="assets/js/lib/presets.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Seções (uma linha por sessão de trabalho, na ordem da página) -->
+    <script src="assets/js/sections/01-nav.js"></script>
+    <script src="assets/js/sections/02-hero.js"></script>
+    <script src="assets/js/sections/03-diferenciais.js"></script>
+    <script src="assets/js/sections/04-sobre.js"></script>
+    <script src="assets/js/sections/05-solucoes.js"></script>
+    <script src="assets/js/sections/06-como-funciona.js"></script>
+    <script src="assets/js/sections/07-brinde.js"></script>
+    <script src="assets/js/sections/08-depoimentos.js"></script>
+    <script src="assets/js/sections/09-bancos.js"></script>
+    <script src="assets/js/sections/10-produto.js"></script>
+    <script src="assets/js/sections/11-unidades.js"></script>
+    <script src="assets/js/sections/12-faq.js"></script>
+    <script src="assets/js/sections/13-rodape.js"></script>
+    <!-- SM:JS -->
+  </body>
+</html>

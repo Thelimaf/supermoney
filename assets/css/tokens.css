@@ -1,0 +1,115 @@
+/* ==========================================================================
+   TOKENS — Super Money
+   Fonte da verdade: Figma PER-F, node 3270:438 (1920 x 13793)
+   Valores extraídos com get_design_context. Novas seções acrescentam tokens
+   aqui, nunca hex solto no CSS de seção.
+   ========================================================================== */
+
+:root {
+  /* ---- Cores: marca ---------------------------------------------------- */
+  --c-verde-escuro: #003511; /* fundo hero / como funciona / FAQ / footer   */
+  --c-verde-profundo: #003913; /* fundo da seção "Sobre", caixa dos ícones  */
+  --c-verde-medio: #005c00; /* blob sólido atrás da foto do hero           */
+  --c-verde-vivo: #09a112; /* topo do gradiente do card "Sobre"           */
+  --c-verde-vivo-2: #057f09; /* meio do gradiente do card "Sobre"          */
+  --c-verde-lima: #7bee09; /* CTA primário                                 */
+  --c-lima-texto: #0a410a; /* texto sobre o lima                           */
+  --c-branco: #ffffff;
+  --c-preto: #0a0a0a; /* variável "preto" do Figma                         */
+  --c-preto-btn: #040404; /* texto do botão branco                         */
+  --c-verde-titulo: #0a410a; /* títulos de card sobre fundo claro          */
+
+  /* ---- Cores: superfícies claras -------------------------------------- */
+  --c-card-claro: #f5f9f8; /* card das seções brancas                      */
+  --c-card-unidade: #f6faf9; /* card de unidade sobre o verde claro        */
+  --c-faq-card: #efffef; /* pergunta do FAQ sobre o verde escuro           */
+  --c-faq-pergunta: #242424; /* texto da pergunta                          */
+  --c-rodape-texto: #b9b9b9; /* texto e links do rodapé                    */
+  --c-texto-corpo: #0c0c0c; /* corpo de texto sobre fundo claro            */
+  --c-titulo-secao: #191919; /* H2 das seções claras                       */
+
+  /* ---- Cores: decorativas --------------------------------------------- */
+  --c-divisor: #aaffaa; /* divisórias dos badges do hero                   */
+  --c-contorno: #d7ffcf; /* stroke dos quadrados arredondados decorativos  */
+  --c-glow-a: #00ff48; /* glow grande do hero                             */
+  --c-glow-b: #0cff00; /* glow menor, mix-blend screen                    */
+  --c-glow-c: #23cc53; /* glow largo de "Como funciona"                   */
+
+  /* ---- Cores: "Como funciona" ----------------------------------------- */
+  --c-passo-card: #e5fee5; /* card de passo                                */
+  --c-passo-badge: #d5fa61; /* pílula "Passo N", ícone dos chips de taxa    */
+
+  /* ---- Cores: seções de produto --------------------------------------- */
+  --c-prod-destaque: #338e37; /* card "Por que Super Money"                 */
+  --c-prod-titulo-destaque: #e5fee5; /* título dentro do card destaque      */
+  --c-badge-baixa-bg: #f6e3e3; /* pílula de taxa que cai                    */
+  --c-badge-baixa-fg: #e41414;
+  --c-badge-alta-bg: #ecf8c8; /* pílula de taxa que sobe                    */
+  --c-badge-alta-fg: #003511;
+
+  /* ---- Tipografia ------------------------------------------------------ */
+  --ff-display: "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  /* o Figma usa Lato só nos cards de depoimento */
+  --ff-depoimento: "Lato", "Helvetica Now Display", Helvetica, Arial, sans-serif;
+  /* e Inter só nos chips de taxa das seções de produto */
+  --ff-chip: "Inter", "Helvetica Now Display", Helvetica, Arial, sans-serif;
+
+  /* escala fluida ancorada em 1920px de largura de design                  */
+  --fs-h1: clamp(2.5rem, 3.854vw, 4.625rem); /* 74px  */
+  --fs-h2: clamp(1.75rem, 2.344vw, 2.8125rem); /* 45px  */
+  --fs-h2-lg: clamp(2rem, 2.708vw, 3.25rem); /* 52px  */
+  --fs-h3: clamp(1.375rem, 1.458vw, 1.75rem); /* 28px  */
+  --fs-card-title: clamp(1.375rem, 1.354vw, 1.625rem); /* 26px */
+  --fs-card-text: clamp(1rem, 0.9375vw, 1.125rem); /* 18px */
+  --fs-lead: clamp(1.0625rem, 1.042vw, 1.25rem); /* 20px  */
+  --fs-body: clamp(0.9375rem, 0.833vw, 1rem); /* 16px  */
+  --fs-sm: clamp(0.875rem, 0.781vw, 0.9375rem); /* 15px  */
+  --fs-numeral: clamp(4rem, 6.771vw, 8.125rem); /* 130px */
+
+  --lh-tight: 1.08; /* H1                                                   */
+  --lh-heading: 1.24; /* H2 / H3                                            */
+  --lh-body: 1.45;
+  --lh-lead: 1.3;
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --container: 1060px; /* largura de conteúdo no Figma (1920 - 430*2)       */
+  --container-wide: 1220px; /* card da seção "Sobre"                        */
+  --container-narrow: 879px; /* seções de produto                          */
+  --container-tight: 707px; /* FAQ                                         */
+  --gutter: clamp(1.25rem, 3vw, 2rem);
+
+  /* ---- Espaçamento ----------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+  --sp-section: clamp(4rem, 7vw, 8rem); /* padding vertical de seção        */
+
+  /* ---- Raios ----------------------------------------------------------- */
+  --r-btn: 3px;
+  --r-card: 10px;
+  --r-pill: 999px;
+
+  /* ---- Movimento ------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1); /* ~ power3.out          */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 0.24s;
+  --dur-base: 0.4s;
+  --dur-slow: 0.8s;
+
+  /* ---- Camadas --------------------------------------------------------- */
+  --z-deco: 0;
+  --z-content: 1;
+  --z-nav: 100;
+  --z-overlay: 200;
+}

@@ -1,0 +1,135 @@
+/* ==========================================================================
+   14 — FAQ  (Figma 3270:1318 — 1920 x 841, fundo #003511)
+   Accordion de 5 perguntas numa coluna de 707px centralizada.
+   A pergunta é um card claro; a resposta fica FORA do card, direto sobre o
+   verde escuro — é assim no Figma.
+   ========================================================================== */
+
+.faq {
+  /* o frame tem 841px com o conteúdo (627px, com o primeiro item aberto)
+     centralizado — medido no render oficial, onde a pílula tem 75px e não os
+     67 que a soma dos paddings sugere (quem manda na altura é o ícone de 32) */
+  padding-block: clamp(3.5rem, 5.573vw, 107px);
+  background: var(--c-verde-escuro);
+  color: var(--c-branco);
+}
+
+.faq__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 52px;
+  width: 100%;
+  max-width: 707px;
+  margin-inline: auto;
+}
+
+.faq__title {
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+  text-align: center;
+}
+
+.faq__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ---- Pergunta ------------------------------------------------------------ */
+.faq__titulo {
+  font: inherit;
+  margin: 0;
+}
+
+.faq__botao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 22px 24px;
+  font-family: var(--ff-display);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 700;
+  line-height: 1.26;
+  text-align: left;
+  color: var(--c-faq-pergunta);
+  background: var(--c-faq-card);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.faq__botao:hover {
+  background: color-mix(in srgb, var(--c-faq-card) 88%, var(--c-verde-lima));
+}
+
+.faq__botao:focus-visible {
+  outline: 2px solid var(--c-verde-lima);
+  outline-offset: 3px;
+}
+
+/* A seta é um só desenho: aberta ela gira 180° e assume o verde.
+   O `transform` mora no ícone, não no botão — o botão é quem o GSAP anima. */
+.faq__seta {
+  display: flex;
+  flex-shrink: 0;
+  color: currentColor;
+  transition: transform var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out);
+}
+
+.faq__seta svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.faq__botao[aria-expanded="true"] .faq__seta {
+  transform: rotate(180deg);
+  color: var(--c-prod-destaque);
+}
+
+/* ---- Resposta ------------------------------------------------------------ */
+/* altura controlada pelo GSAP; o overflow é o que faz o conteúdo "crescer" */
+.faq__painel {
+  overflow: hidden;
+}
+
+.faq__resposta {
+  padding: 18px 24px;
+  font-size: 1.125rem;
+  line-height: 1.26;
+  color: var(--c-branco);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+@media (max-width: 599px) {
+  .faq__inner {
+    gap: 32px;
+  }
+
+  .faq__lista {
+    gap: 12px;
+  }
+
+  .faq__botao {
+    padding: 18px 16px;
+    font-size: 1rem;
+  }
+
+  .faq__seta svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .faq__resposta {
+    padding: 14px 16px;
+    font-size: 1rem;
+  }
+}

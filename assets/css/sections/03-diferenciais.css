@@ -1,0 +1,38 @@
+/* ==========================================================================
+   02 — DIFERENCIAIS  (Figma 3270:439 — 1920 x 508, fundo branco)
+   4 cards claros. A aparência do card vem de .card-info (components.css);
+   aqui fica só a grade.
+   ========================================================================== */
+
+/* O auto-layout do Figma declara py-80, mas o frame tem altura fixa de 508
+   com o conteúdo centralizado — o que de fato é renderizado são 118px. */
+.difs {
+  padding-block: clamp(3rem, 6.15vw, 118px);
+  background: var(--c-branco);
+}
+
+.difs__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+/* Tablet: 2 x 2 */
+@media (max-width: 1023px) {
+  .difs__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: coluna única */
+@media (max-width: 599px) {
+  .difs__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

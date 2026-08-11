@@ -1,0 +1,141 @@
+/* ==========================================================================
+   13 — UNIDADES  (Figma 3270:1253 — 1920 x 854, fundo #e5fee5)
+   Título curto centralizado, três cards de loja lado a lado e o CTA.
+   O conteúdo tem 1060px, que é exatamente o `--container` do projeto.
+   ========================================================================== */
+
+.unidades {
+  /* o frame tem 854px de altura com o conteúdo (651px) centralizado */
+  padding-block: clamp(3.5rem, 5.29vw, 101px);
+  background: var(--c-passo-card);
+  color: var(--c-titulo-secao);
+}
+
+.unidades__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 52px;
+}
+
+/* O Figma limita o título a 552px — é isso que quebra em duas linhas
+   ("Venha nos visitar ou / fale pelo WhatsApp"). */
+.unidades__title {
+  max-width: 552px;
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+  text-align: center;
+}
+
+.unidades__corpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 29px;
+  width: 100%;
+}
+
+/* ---- Grade de unidades --------------------------------------------------- */
+.unidades__grade {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 23px;
+  width: 100%;
+}
+
+.unidade {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 402px;
+  padding: 46px 28px;
+  background: var(--c-card-unidade);
+  border: 1px solid rgb(0 53 17 / 0.09);
+  border-radius: 10px;
+}
+
+.unidade__topo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.unidade__pino {
+  display: block;
+  width: 65px;
+  height: 65px;
+}
+
+.unidade__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.unidade__nome {
+  font-size: 1.625rem; /* 26px */
+  line-height: 1.08;
+  color: var(--c-verde-titulo);
+}
+
+.unidade__fones {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.unidade__fone {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.26;
+  color: var(--c-texto-corpo);
+}
+
+.unidade__fone img {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* o horário fica colado no rodapé do card, separado por um filete */
+.unidade__horario {
+  padding-top: 20px;
+  font-size: 1.125rem;
+  line-height: 1.26;
+  color: var(--c-texto-corpo);
+  border-top: 1px solid rgb(0 53 17 / 0.23);
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+/* Tablet: dois cards em cima, um embaixo */
+@media (max-width: 1023px) {
+  .unidades__grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .unidade {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 599px) {
+  .unidades__inner {
+    gap: 36px;
+  }
+
+  .unidades__grade {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .unidade {
+    padding: 32px 24px;
+  }
+}

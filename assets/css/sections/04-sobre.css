@@ -1,0 +1,171 @@
+/* ==========================================================================
+   03 — SOBRE  (Figma 3270:535 — 1920 x 877, fundo #003913)
+   Card verde de 1220px com texto à esquerda e a foto da fachada estourando
+   60px para cima e para baixo do card.
+   ========================================================================== */
+
+.sobre {
+  padding-block: clamp(4rem, 6.61vw, 127px); /* 127 = (877 - 623) / 2 */
+  background: var(--c-verde-profundo);
+  color: var(--c-branco);
+}
+
+/* contorno decorativo, canto inferior esquerdo (Figma 3270:536) */
+.sobre__frame {
+  left: -7.55%; /* -145 / 1920 */
+  top: 49.37%; /* 433 / 877   */
+  width: 46.25%; /* 888 / 1920  */
+  aspect-ratio: 888 / 887;
+  transform: rotate(180deg);
+}
+
+/* ---- Card ---------------------------------------------------------------- */
+.sobre__card {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding: 68px 78px;
+  border-radius: var(--r-card);
+
+  /* Figma: radialGradient com gradientTransform — centro em (1124.9, -49),
+     raios 570 e 1418. O CSS não gira gradiente radial, então usamos os dois
+     raios como rx/ry; a diferença visual é imperceptível.                   */
+  background: radial-gradient(
+    ellipse 46.7% 227.6% at 92.2% -7.9%,
+    var(--c-verde-vivo) 0%,
+    var(--c-verde-vivo-2) 50%,
+    var(--c-verde-medio) 100%
+  );
+}
+
+/* ---- Coluna de texto ----------------------------------------------------- */
+.sobre__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 42px;
+  width: 42.3%; /* 450 de 1064 de área útil */
+}
+
+.sobre__head {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.sobre__title {
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+}
+
+.sobre__lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+}
+
+/* ---- Foto da fachada ----------------------------------------------------- */
+.sobre__photo {
+  position: absolute;
+  left: 50%; /* 610 / 1220  */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 43.52%; /* 531 / 1220  */
+  aspect-ratio: 531 / 741;
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+/* estado inicial da revelação: o GSAP abre a máscara de baixo para cima */
+.js .sobre__photo {
+  clip-path: inset(0 0 100% 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .sobre__photo {
+    clip-path: none;
+  }
+}
+
+/* o Figma escala a imagem para 109% da largura e desloca -36,44% no topo —
+   é um enquadramento manual, não um object-fit padrão */
+.sobre__photo img {
+  position: absolute;
+  left: 0;
+  top: -36.44%;
+  width: 109.04%;
+  height: 138.84%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+/* Desktop estreito: o card encolhe junto */
+@media (max-width: 1279px) {
+  .sobre__card {
+    padding: clamp(2.5rem, 5vw, 68px) clamp(1.5rem, 6vw, 78px);
+  }
+}
+
+/* Tablet e mobile: empilha — texto em cima, foto embaixo, dentro do card */
+@media (max-width: 1023px) {
+  .sobre {
+    padding-block: clamp(3rem, 8vw, 5rem);
+  }
+
+  .sobre__card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(2rem, 5vw, 3rem);
+  }
+
+  .sobre__text {
+    width: 100%;
+    gap: clamp(1.5rem, 4vw, 42px);
+  }
+
+  .sobre__photo {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 531px;
+    margin-inline: auto;
+    aspect-ratio: 4 / 3; /* o retrato alto não cabe empilhado */
+  }
+
+  /* A placa da loja fica entre 58,6% e 74,4% da altura da foto (centro em
+     66,5%). Com cover em 4/3, isso dá object-position Y = 79% — sem isso o
+     recorte mostra só o céu e o prédio, que é o que menos importa aqui.    */
+  .sobre__photo img {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 79%;
+  }
+
+  .sobre__frame {
+    left: -30%;
+    top: 60%;
+    width: 90%;
+  }
+}
+
+@media (max-width: 599px) {
+  .sobre__card {
+    padding: clamp(1.75rem, 7vw, 2.5rem) clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  .sobre__text .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,138 @@
+/* ==========================================================================
+   08 — BANCOS PARCEIROS  (Figma 3270:758 — dentro do frame 3270:680)
+   Cabeçalho + esteira infinita com 9 logos, full-bleed.
+   ========================================================================== */
+
+.bancos {
+  padding-bottom: clamp(3.5rem, 8.28vw, 159px); /* 1317 − 1157,6 no Figma */
+  background: var(--c-branco);
+  color: var(--c-titulo-secao);
+}
+
+/* ---- Cabeçalho ----------------------------------------------------------- */
+.bancos__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  max-width: 674px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.bancos__title {
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+}
+
+.bancos__lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+}
+
+/* ==========================================================================
+   Esteira
+   A fileira do Figma tem 1923px — mais larga que o conteúdo, então é
+   full-bleed. O conteúdo é duplicado no HTML e o GSAP anda `xPercent: -50`:
+   quando a primeira cópia sai, a segunda está exatamente na posição inicial,
+   e o loop não tem costura visível.
+   ========================================================================== */
+.bancos__esteira {
+  --esc: 1; /* fator de escala dos logos por breakpoint */
+
+  margin-top: 62px; /* 213 (fileira) − 151 (cabeçalho) no Figma */
+  overflow: hidden;
+  /* esmaece as pontas para a esteira não "cortar" nas bordas da tela */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+
+.bancos__track {
+  display: flex;
+  align-items: center;
+  /* O espaçamento visual do Figma é 58px — (1923,35 − soma das larguras) / 8.
+     Como cada item tem 12px de padding de cada lado (área de hover), o gap
+     precisa descontar esses 24px para o resultado visual bater.            */
+  gap: 34px;
+  width: max-content;
+  will-change: transform;
+}
+
+.bancos__item {
+  flex: none;
+  display: grid;
+  place-items: center;
+  /* área de hover um pouco maior que o logo, para o mouse "pegar" fácil */
+  padding: 12px;
+}
+
+.bancos__item img {
+  /* --flip existe porque o Figma exporta o logo da Caixa invertido e o
+     desvira no próprio nó; sem isso ele aparece espelhado. Fica numa variável
+     para o hover poder compor a escala sem sobrescrever o flip.            */
+  --flip: scaleY(1);
+
+  width: auto;
+  height: calc(var(--h) * var(--esc));
+  transform: var(--flip) scale(1);
+  transition: transform 0.45s var(--ease-out);
+}
+
+.bancos__item--caixa img {
+  --flip: scaleY(-1);
+}
+
+/* leve destaque ao passar o mouse — só onde existe cursor de verdade */
+@media (hover: hover) and (pointer: fine) {
+  .bancos__item:hover img {
+    transform: var(--flip) scale(1.12);
+  }
+}
+
+/* alturas exatas do Figma (a largura vem da proporção do próprio SVG) */
+.bancos__item--bb img       { --h: 38.8px; }
+.bancos__item--caixa img    { --h: 36.9px; }
+.bancos__item--itau img     { --h: 69.6px; }
+.bancos__item--santander img{ --h: 39.55px; }
+.bancos__item--inter img    { --h: 41.34px; }
+.bancos__item--btg img      { --h: 67.58px; }
+.bancos__item--bradesco img { --h: 37.41px; }
+.bancos__item--nubank img   { --h: 39.01px; }
+.bancos__item--c6 img       { --h: 33.38px; }
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .bancos__esteira {
+    --esc: 0.82;
+    margin-top: clamp(2rem, 5vw, 62px);
+  }
+
+  .bancos__track {
+    gap: 20px; /* 44 visuais − 24 de padding */
+  }
+}
+
+@media (max-width: 599px) {
+  .bancos__esteira {
+    --esc: 0.68;
+  }
+
+  .bancos__track {
+    gap: 8px; /* 32 visuais − 24 de padding */
+  }
+}

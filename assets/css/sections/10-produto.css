@@ -1,0 +1,982 @@
+/* ==========================================================================
+   TEMPLATE DAS SEÇÕES DE PRODUTO
+   Figma: INSS 3270:798 · CLT 3270:960 · Servidor 3270:869 · Limpa Nome 3270:1042
+
+   As quatro têm a mesma estrutura: cabeçalho centralizado, dois cards, um card
+   de destaque com uma ilustração à direita, mais dois cards e o CTA. O que
+   muda entre elas é a cor de fundo e a ilustração do destaque — por isso o
+   fundo vem de `--prod-bg` e a ilustração é um slot.
+   ========================================================================== */
+
+.prod {
+  --prod-bg: var(--c-verde-escuro);
+  --prod-titulo: var(--c-branco);
+  /* cada produto tem seu respiro no Figma: INSS 70,5 · CLT 98 · Servidor 110 */
+  --prod-pad: 70px;
+
+  padding-block: min(var(--prod-pad), 5.7vw);
+  background: var(--prod-bg);
+  color: var(--prod-titulo);
+}
+
+/* Variante de fundo claro (CLT e Limpa Nome).
+   Além do fundo, muda a paleta dos cards: os comuns ficam quase brancos e o
+   destaque assume o verde claro que, na variante escura, era dos comuns. */
+.prod--claro {
+  --prod-bg: var(--c-branco);
+  --prod-titulo: var(--c-titulo-secao);
+}
+
+#clt {
+  --prod-pad: 98px;
+}
+
+#servidor {
+  --prod-pad: 110px;
+}
+
+#limpa-nome {
+  --prod-pad: 111px;
+}
+
+/* ==========================================================================
+   Conversa de WhatsApp (Limpa Nome)
+   Reconstruída em HTML para o chat simular uma conversa: o aparelho surge, o
+   nome do contato aparece, os balões entram um a um como mensagens chegando e
+   os dois selos caem por último.
+   Medidas em `cqw` (100cqw = 302.0px, a largura da ilustração). No Figma o chat
+   foi desenhado girado 90°, o que torna as coordenadas do export inúteis — os
+   tamanhos vêm do design context (balões 186,2×37 e 191×69) e o arranjo, do
+   próprio layout de conversa.
+   ========================================================================== */
+#limpa-nome .prod__arte--conversa {
+  container-type: inline-size;
+  position: relative;
+  align-self: flex-start;
+  width: 302.0px;
+  aspect-ratio: 302.0 / 289;
+  margin-top: -46px;
+  overflow: hidden;
+}
+
+/* ---- Aparelho ------------------------------------------------------------ */
+/* O aparelho NÃO termina dentro do quadro: ele sai por baixo e é cortado pelo
+   `overflow` do container, exatamente como no Figma. Por isso a altura é maior
+   que o espaço disponível — se ela coubesse, apareceria a base arredondada. */
+.zap {
+  position: absolute;
+  left: 8.609cqw;
+  top: 3.974cqw;
+  width: 84.437cqw;
+  height: 100cqw; /* passa dos 95.7cqw do quadro: a base fica cortada */
+  background: #fff;
+  border: 4.967cqw solid #c4d6ca;
+  border-radius: 8.278cqw;
+  overflow: hidden;
+}
+
+.zap__tela {
+  display: flex;
+  flex-direction: column;
+  padding: 7.616cqw 5.960cqw;
+  font-family: var(--ff-chip);
+}
+
+/* ---- Contato ------------------------------------------------------------- */
+.zap__contato {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8.940cqw;
+}
+
+.zap__nome {
+  font-size: 3.818cqw;
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.056cqw;
+  color: var(--c-verde-escuro);
+}
+
+.zap__visto {
+  font-size: 2.643cqw;
+  font-weight: 300;
+  line-height: 1.25;
+  color: rgb(67 67 67 / 0.7);
+}
+
+/* ---- Mensagens ----------------------------------------------------------- */
+.zap__msg {
+  display: flex;
+  flex-direction: column;
+  gap: 0.993cqw;
+  align-items: flex-start;
+}
+
+.zap__hora {
+  font-size: 2.295cqw;
+  line-height: 1.27;
+  letter-spacing: -0.031cqw;
+  color: var(--c-verde-escuro);
+}
+
+/* Cada balão tem altura e coluna de texto FIXAS, como no Figma: o retângulo
+   foi desenhado à mão, então a sobra interna não é simétrica nem igual entre
+   os dois. O padding-right é o que força a quebra de linha do design. */
+.zap__balao {
+  font-size: 2.830cqw;
+  line-height: 1.286;
+  /* canto superior esquerdo reto, como no Figma */
+  border-radius: 0 5.432cqw 5.432cqw 5.432cqw;
+}
+
+.zap__balao--1 {
+  width: 61.656cqw;   /* 186,2px */
+  height: 12.240cqw;  /*  37,0px */
+  padding: 2.815cqw 12.583cqw 0 3.642cqw; /* coluna de texto de 137px */
+  background: var(--c-verde-escuro);
+  color: rgb(255 255 255 / 0.8);
+}
+
+.zap__balao--2 {
+  width: 63.245cqw;   /* 191,0px */
+  height: 22.848cqw;  /*  69,0px */
+  padding: 4.387cqw 4.305cqw 0; /* coluna de texto de 165px */
+  background: var(--c-verde-medio);
+  color: #f2f5ff;
+}
+
+/* o intervalo entre uma mensagem e a outra é maior que o do bloco do contato,
+   então vem daqui e não de um `gap` no .zap__tela (que valeria para os dois) */
+.zap__msg + .zap__msg {
+  margin-top: 10.265cqw;
+}
+
+/* a segunda mensagem é da Super Money: hora alinhada à direita */
+.zap__msg--resposta .zap__hora {
+  align-self: flex-end;
+  margin-right: 1.656cqw;
+}
+
+/* ---- Selos flutuantes ---------------------------------------------------- */
+.zap__selo {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Os selos são exportados SEM a moldura tracejada que existe no Figma (nós
+   `3270:1230` e `3270:1224`): o cliente pediu o ícone limpo. Por isso o export
+   é do ícone em si — `3270:1228` para o WhatsApp — e o $M é o quadrado
+   `3270:1223` com o glifo `3270:1225` composto por cima.
+   Posição e tamanho vêm dos vértices do quadrado girado medidos no render
+   oficial do grupo `3270:1073` (302 × 289). */
+.zap__selo--whats {
+  left: 61.921cqw;
+  top: 4.387cqw;
+  width: 37.997cqw;
+}
+
+.zap__selo--sm {
+  left: -3.728cqw;
+  top: 48.373cqw;
+  width: 35.084cqw;
+}
+
+.zap__selo img {
+  width: 100%;
+  height: auto;
+}
+
+/* estados iniciais da animação */
+.js #limpa-nome .zap,
+.js #limpa-nome .zap__contato,
+.js #limpa-nome .zap__msg,
+.js #limpa-nome .zap__selo {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js #limpa-nome .zap,
+  .js #limpa-nome .zap__contato,
+  .js #limpa-nome .zap__msg,
+  .js #limpa-nome .zap__selo {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1023px) {
+  #limpa-nome .prod__arte--conversa {
+    align-self: center;
+    width: min(100%, 302.0px);
+    margin-top: 0;
+  }
+}
+
+/* No Servidor a primeira fileira tem 265px no Figma (o texto é mais curto), e
+   não os 288 fixos das outras — aqui a altura segue o conteúdo. */
+#servidor .prod__dupla:first-of-type {
+  min-height: 0;
+}
+
+/* e a coluna de texto do destaque é 371px, não 399.
+   Escopado em #servidor de propósito: como modificador de classe simples ele
+   empatava em especificidade com `.prod__destaque-texto` e perdia por ordem
+   no arquivo, empurrando a órbita 28px para a direita. */
+#servidor .prod__destaque-texto {
+  width: 371px;
+}
+
+#servidor .prod__destaque-desc {
+  max-width: 343px;
+}
+
+/* No INSS o Figma estreita o parágrafo do destaque para 355px (a CLT usa os
+   399 inteiros) — sem isso a quebra de linha sai diferente do design. */
+#inss .prod__destaque-desc {
+  max-width: 355px;
+}
+
+.prod--claro .prod__card {
+  background: var(--c-card-claro);
+}
+
+.prod--claro .prod__destaque {
+  background: var(--c-passo-card);
+}
+
+.prod--claro .prod__destaque-titulo {
+  color: var(--c-verde-titulo);
+}
+
+.prod--claro .prod__destaque-desc {
+  color: var(--c-texto-corpo);
+}
+
+.prod__inner {
+  position: relative;
+  z-index: var(--z-content);
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* ---- Cabeçalho ----------------------------------------------------------- */
+.prod__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  text-align: center;
+}
+
+.prod__title {
+  font-size: var(--fs-h2-lg);
+  line-height: 1.08;
+  color: inherit;
+}
+
+.prod__lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+}
+
+/* o CLT limita o subtítulo a 649px dos 879 do cabeçalho */
+.prod__lead--estreito {
+  max-width: 649px;
+}
+
+/* ---- Corpo --------------------------------------------------------------- */
+.prod__corpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.prod__grade {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.prod__dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 23px;
+  align-items: stretch;
+  /* O Figma fixa 288px nas fileiras. Usamos `min-height` em vez de `height`
+     para o template aguentar os outros três produtos, cujos textos são mais
+     longos — aqui o resultado é idêntico ao design.                        */
+  min-height: 288px;
+}
+
+/* ---- Card comum ---------------------------------------------------------- */
+.prod__card {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  padding: 46px 28px;
+  background: var(--c-passo-card);
+  border-radius: var(--r-card);
+}
+
+.prod__card-icone {
+  width: 40px;
+  height: 40px;
+  flex: none;
+}
+
+.prod__card-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.prod__card-titulo {
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--c-verde-titulo);
+}
+
+.prod__card-desc {
+  font-size: var(--fs-card-text);
+  line-height: 1.26;
+  color: var(--c-texto-corpo);
+}
+
+/* ==========================================================================
+   Card de destaque
+   ========================================================================== */
+.prod__destaque {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  /* altura FIXA, como no Figma: a ilustração é maior que a área útil e sangra
+     nos dois eixos — 399 + 17 + 469 = 885 de largura num card de 823 úteis, e
+     os dois chips somam 222,9 de altura contra 196 disponíveis. O `overflow`
+     é o que o Figma chama de clip content.                                  */
+  height: 288px;
+  padding: 46px 28px;
+  background: var(--c-prod-destaque);
+  border-radius: var(--r-card);
+  overflow: hidden;
+}
+
+.prod__destaque-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: 399px;
+  flex: none;
+}
+
+.prod__destaque-titulo {
+  font-size: var(--fs-card-title);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--c-prod-titulo-destaque);
+}
+
+.prod__destaque-desc {
+  font-size: var(--fs-card-text);
+  line-height: 1.26;
+  color: var(--c-branco);
+}
+
+/* slot da ilustração — cada produto põe o seu */
+.prod__arte {
+  flex: none;
+  width: 469px;
+}
+
+/* Ilustração exportada como imagem única (tablet do CLT, órbita do Servidor,
+   conversa do Limpa Nome). São composições com máscaras e fontes próprias no
+   Figma; remontar camada por camada não compensa. Encostam na base do card. */
+.prod__arte--imagem {
+  align-self: flex-end;
+  width: 356.5px;
+  margin-bottom: -46px; /* anula o padding inferior: a arte encosta na base */
+}
+
+.prod__arte--imagem img {
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Ilustração do tablet (CLT)
+   Reconstruída em HTML para a tela poder surgir e as informações subirem uma
+   a uma dentro dela. As medidas são as do Figma convertidas para `cqw`
+   (100cqw = 356,536px, a largura da ilustração), então tudo escala junto com
+   o card sem nenhuma media query.
+   ========================================================================== */
+.prod__arte--tablet {
+  container-type: inline-size;
+  position: relative;
+  align-self: flex-end;
+  width: 356.5px;
+  /* `aspect-ratio` e não altura em `cqw`: unidade de container não resolve
+     contra o próprio container — caía no viewport e dava 1406px de altura. */
+  aspect-ratio: 356.5 / 259;
+  margin-bottom: -46px; /* encosta na base do card */
+  overflow: hidden;
+}
+
+.tablet__arco {
+  position: absolute;
+  z-index: 0;
+}
+
+.tablet__arco--1 {
+  left: 7.952cqw;
+  top: 16.169cqw;
+  width: 84.097cqw;
+  height: 108.145cqw;
+}
+
+.tablet__arco--2 {
+  left: 0.421cqw;
+  top: 6.485cqw;
+  width: 99.160cqw;
+  height: 127.514cqw;
+}
+
+/* ---- Aparelho ------------------------------------------------------------ */
+.tablet {
+  position: absolute;
+  left: 18.486cqw;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 68.487cqw;
+  height: 85.366cqw;
+  background: #f2f5ff;
+  border: 2.311cqw solid rgb(0 53 17 / 0.19);
+  border-radius: 4.675cqw;
+  font-family: var(--ff-chip);
+}
+
+.tablet__topo {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* a linha é mais larga que a área útil: o excesso
+                          precisa sobrar dos dois lados, não só à direita */
+  justify-content: center;
+  gap: 2.805cqw;
+  width: 100%;
+  height: 23.280cqw;
+  padding: 3.740cqw 7.480cqw;
+}
+
+.tablet__linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 55.631cqw;
+}
+
+.tablet__marca {
+  display: flex;
+  align-items: center;
+  gap: 1.870cqw;
+  font-size: 3.272cqw;
+  font-weight: 600;
+  line-height: 1.48;
+  color: var(--c-verde-escuro);
+  white-space: nowrap;
+}
+
+.tablet__marca img {
+  width: 2.279cqw;
+  height: 2.279cqw;
+}
+
+.tablet__chevron {
+  width: 2.479cqw;
+  height: 1.515cqw;
+  transform: rotate(180deg);
+}
+
+.tablet__data {
+  display: flex;
+  align-items: center;
+  /* mesma largura da linha de cima para o conteúdo alinhar pela esquerda com
+     o "Super Money" — sem isso a data ficava centralizada no aparelho */
+  width: 55.631cqw;
+  gap: 0.935cqw;
+  font-size: 2.337cqw;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #8b8b8b;
+  white-space: nowrap;
+}
+
+.tablet__data img {
+  width: 2.727cqw;
+  height: 2.727cqw;
+}
+
+/* ---- Tela ---------------------------------------------------------------- */
+.tablet__tela {
+  display: grid;
+  place-items: center;
+  width: 53.294cqw;
+  height: 40.672cqw;
+  /* sem padding lateral: o grupo de pills é mais largo que a área útil, e o
+     padding empurrava tudo para a direita em vez de deixar centralizado */
+  background: var(--c-verde-escuro);
+  border-radius: 2.805cqw;
+}
+
+.tablet__pills {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* cada pill abraça o próprio texto */
+  gap: 2.805cqw;
+}
+
+.tablet__pill {
+  display: flex;
+  align-items: center;
+  gap: 1.870cqw;
+  padding: 0.935cqw 3.740cqw;
+  background: #f2f5ff;
+  border: 0.234cqw solid #e3e3e3;
+  border-radius: 4.675cqw;
+  font-size: 3.272cqw;
+  line-height: 1.45;
+  color: var(--c-verde-escuro);
+  white-space: nowrap;
+}
+
+.tablet__pill img {
+  width: 3.117cqw;
+  height: 3.117cqw;
+  flex: none;
+}
+
+/* estados iniciais da animação (o GSAP revela) */
+.js .prod__arte--tablet .tablet {
+  opacity: 0;
+}
+
+.js .prod__arte--tablet .tablet__pill {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .prod__arte--tablet .tablet,
+  .js .prod__arte--tablet .tablet__pill {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .prod__arte--tablet {
+    margin-inline: auto;
+    margin-bottom: -32px;
+  }
+}
+
+/* ==========================================================================
+   Órbita de bancos (Servidor Público)
+   Cada logo fica na ponta de um "braço" que parte do centro do $M. Animar a
+   rotação do braço faz o satélite percorrer um arco de verdade — é o que dá o
+   efeito de sair girando para entrar em órbita.
+   Medidas do Figma em `cqw` (100cqw = 421.975px, a largura da ilustração).
+   ========================================================================== */
+.prod__arte--orbita {
+  container-type: inline-size;
+  position: relative;
+  width: 421.975px;
+  aspect-ratio: 421.975 / 288;
+  align-self: center;
+}
+
+.orbita__nucleo {
+  position: absolute;
+  left: 3.240cqw;
+  top: 0;
+  width: 91.577cqw;
+  height: 91.577cqw;
+}
+
+/* braço: um ponto no centro do núcleo que gira levando o satélite na ponta */
+.orbita__braco {
+  position: absolute;
+  left: 49.028cqw;
+  top: 45.789cqw;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--ang));
+}
+
+.orbita__pos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  /* Só posicionamento, e só em CSS: anda --r para fora do centro do braço e
+     contra-rotaciona para o logo ficar em pé no fim. Fica num elemento
+     separado porque o GSAP anima escala no satélite — se os dois escrevessem
+     no mesmo `transform`, um apagaria o outro. */
+  transform: translate(-50%, -50%) translateX(var(--r)) rotate(calc(-1 * var(--ang)));
+}
+
+.orbita__sat {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* O hover mora num elemento próprio: o GSAP escreve `transform` no
+   .orbita__sat (escala da entrada) e o .orbita__pos carrega o transform de
+   posição — um terceiro nível deixa o hover livre de disputa. */
+.orbita__corpo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .orbita__sat:hover .orbita__corpo {
+    transform: translateY(-7px) scale(1.1);
+  }
+}
+
+.orbita__disco {
+  width: 100%;
+  height: 100%;
+}
+
+.orbita__logo {
+  position: absolute;
+  overflow: hidden;
+}
+
+.orbita__logo img {
+  position: absolute;
+  max-width: none;
+}
+
+.orbita__braco--1 {
+  --ang: -50.66deg;
+  --r: 41.191cqw;
+}
+
+.orbita__pos--1 {
+  width: 16.935cqw;
+  height: 16.935cqw;
+}
+
+.orbita__pos--1 .orbita__logo {
+  left: 2.697cqw;
+  top: 2.697cqw;
+  width: 11.464cqw;
+  height: 11.464cqw;
+}
+
+.orbita__pos--1 .orbita__logo img {
+  left: 0.068cqw;
+  top: 0.844cqw;
+  width: 54.232cqw;
+  height: 10.168cqw;
+}
+.orbita__braco--2 {
+  --ang: -2.86deg;
+  --r: 42.430cqw;
+}
+
+.orbita__pos--2 {
+  width: 16.935cqw;
+  height: 16.935cqw;
+}
+
+.orbita__pos--2 .orbita__logo {
+  left: 2.821cqw;
+  top: 3.364cqw;
+  width: 11.375cqw;
+  height: 10.664cqw;
+}
+
+.orbita__pos--2 .orbita__logo img {
+  left: -1.422cqw;
+  top: 0.000cqw;
+  width: 66.923cqw;
+  height: 11.375cqw;
+}
+.orbita__braco--3 {
+  --ang: -178.02deg;
+  --r: 41.185cqw;
+}
+
+.orbita__pos--3 {
+  width: 15.735cqw;
+  height: 15.735cqw;
+}
+
+.orbita__pos--3 .orbita__logo {
+  left: 3.555cqw;
+  top: 3.549cqw;
+  width: 8.436cqw;
+  height: 8.436cqw;
+}
+
+.orbita__pos--3 .orbita__logo img {
+  left: 0.000cqw;
+  top: 0.000cqw;
+  width: 8.436cqw;
+  height: 8.436cqw;
+}
+.orbita__braco--4 {
+  --ang: -121.73deg;
+  --r: 39.252cqw;
+}
+
+.orbita__pos--4 {
+  width: 15.735cqw;
+  height: 15.735cqw;
+}
+
+.orbita__pos--4 .orbita__logo {
+  left: 1.080cqw;
+  top: 0.851cqw;
+  width: 12.483cqw;
+  height: 12.521cqw;
+}
+
+.orbita__pos--4 .orbita__logo img {
+  left: 0.893cqw;
+  top: 3.045cqw;
+  width: 10.517cqw;
+  height: 5.916cqw;
+}
+
+/* o satélite 4 (Nubank) vem levemente inclinado no Figma */
+.orbita__pos--4 .orbita__logo {
+  transform: rotate(-7.02deg);
+}
+
+/* estados iniciais da animação */
+.js .prod__arte--orbita .orbita__nucleo,
+.js .prod__arte--orbita .orbita__sat {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .prod__arte--orbita .orbita__nucleo,
+  .js .prod__arte--orbita .orbita__sat {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .prod__arte--orbita {
+    width: min(100%, 421.975px);
+    margin-inline: auto;
+  }
+}
+
+/* ---- Chips de taxa (INSS) ------------------------------------------------ */
+.prod__chips {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 17px;
+}
+
+.prod__chip {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 22px;
+  background: var(--c-verde-escuro);
+  border-radius: 20px;
+}
+
+.prod__chip img {
+  width: 58.95px;
+  height: 58.95px;
+  flex: none;
+}
+
+.prod__chip-info {
+  display: flex;
+  align-items: center;
+  gap: 29px;
+}
+
+.prod__chip-nome {
+  font-family: var(--ff-chip);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: normal;
+  color: var(--c-branco);
+  white-space: nowrap;
+}
+
+.prod__chip-taxa {
+  display: grid;
+  place-items: center;
+  width: 82.53px;
+  height: 30.13px;
+  flex: none;
+  font-family: var(--ff-chip);
+  font-size: 15.72px;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 13.1px;
+  white-space: nowrap;
+}
+
+.prod__chip-taxa--baixa {
+  background: var(--c-badge-baixa-bg);
+  color: var(--c-badge-baixa-fg);
+}
+
+.prod__chip-taxa--alta {
+  background: var(--c-badge-alta-bg);
+  color: var(--c-badge-alta-fg);
+}
+
+/* ==========================================================================
+   Decorativos
+   ========================================================================== */
+.prod__frame {
+  width: 50%; /* 960 / 1920 */
+  aspect-ratio: 1;
+  opacity: 0.85;
+}
+
+.prod__frame--esq {
+  left: -32.66%; /* 333 − 960, girado 180° */
+  top: -35.53%; /* −480 / 1351 */
+  transform: rotate(180deg);
+}
+
+.prod__frame--dir {
+  left: 79.53%; /* 1527 / 1920 */
+  top: 61.07%; /* 825 / 1351  */
+}
+
+/* Glow da base.
+   Mesmo método de "Como funciona": amostramos o verde do Figma em vários raios
+   a partir do centro do disco (959,5 / 1426,5 — 75px abaixo da seção) e
+   convertimos em opacidade sob blend screen (delta_verde / 202, porque o glow
+   é #0CFF00). Os stops abaixo são esse perfil medido.                      */
+.prod__glow {
+  inset: 0;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    52.08vw 52.08vw at 50% 105.6%,
+    rgb(12 255 0 / 0.235) 0%,
+    rgb(12 255 0 / 0.228) 14%,
+    rgb(12 255 0 / 0.193) 28%,
+    rgb(12 255 0 / 0.124) 48%,
+    rgb(12 255 0 / 0.059) 69%,
+    rgb(12 255 0 / 0.015) 91%,
+    rgb(12 255 0 / 0) 100%
+  );
+}
+
+/* nas seções claras não há glow nem contornos */
+.prod--claro .prod__glow,
+.prod--claro .prod__frame {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+  .prod__inner,
+  .prod__corpo {
+    gap: clamp(2rem, 5vw, 50px);
+  }
+
+  .prod__dupla {
+    min-height: 0;
+  }
+
+  .prod__card {
+    padding: 32px 24px;
+  }
+
+  .prod__destaque {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    height: auto; /* empilhado, a altura segue o conteúdo */
+    padding: 32px 24px;
+    overflow: visible; /* empilhado, a arte não precisa sangrar */
+  }
+
+  .prod__destaque-texto,
+  .prod__arte {
+    width: 100%;
+  }
+
+  .prod__destaque-desc {
+    max-width: none;
+  }
+
+  .prod__chips {
+    align-items: stretch;
+  }
+
+  .prod__chip {
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .prod__chip-info {
+    flex: 1;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .prod__chip img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .prod__chip-nome {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 599px) {
+  .prod__dupla {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .prod__card {
+    padding: 28px 22px;
+    gap: 16px;
+  }
+
+  .prod__card-texto {
+    gap: 10px;
+  }
+
+  .prod__corpo .btn {
+    width: 100%;
+  }
+
+  .prod__chip-nome {
+    font-size: 17px;
+  }
+
+  .prod__chip-taxa {
+    width: 72px;
+    font-size: 14px;
+  }
+}

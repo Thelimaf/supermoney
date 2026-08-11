@@ -1,0 +1,294 @@
+/* ==========================================================================
+   01 — HERO  (Figma 3270:485 — 1920 x 825, fundo #003511)
+   Coordenadas do Figma convertidas em % da caixa do hero.
+   ========================================================================== */
+
+.hero {
+  --hero-h: clamp(640px, 43vw, 900px); /* 43vw @1920 = 825px, como no Figma */
+
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  min-height: var(--hero-h);
+  /* o conteúdo começa em y=250 e sobra 99px embaixo (Figma), não é centrado */
+  padding-block: clamp(150px, 13.02vw, 250px) clamp(2rem, 5.16vw, 99px);
+  background: var(--c-verde-escuro);
+  color: var(--c-branco);
+  isolation: isolate;
+}
+
+/* ---- Conteúdo ------------------------------------------------------------ */
+.hero__inner {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.hero__copy {
+  max-width: 520px;
+}
+
+.hero__title {
+  max-width: 475px; /* força a mesma quebra do Figma em 3 linhas */
+  color: var(--c-branco);
+}
+
+.hero__lead {
+  margin-top: 17px;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  max-width: 520px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 40px;
+}
+
+/* ---- Selos de confiança -------------------------------------------------- */
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-top: 46px;
+}
+
+.hero__badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 6px;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-lead);
+  white-space: nowrap;
+}
+
+.hero__badge:not(:last-child) {
+  border-right: 1px solid var(--c-divisor);
+}
+
+.hero__badge img {
+  width: 25px;
+  height: 25px;
+  flex: none;
+}
+
+/* ==========================================================================
+   Foto e elementos decorativos
+   Todos posicionados em % da caixa do hero, a partir das coordenadas do Figma.
+   ========================================================================== */
+
+.hero__photo {
+  position: absolute;
+  left: 53.33%; /* 1024 / 1920 */
+  top: 15.64%; /* 129 / 825   */
+  width: 31.82%; /* 611 / 1920  */
+  height: 88.24%; /* 728 / 825 — sangra 32px abaixo, cortado pelo overflow */
+  z-index: 2; /* a foto fica acima de tudo, como no Figma */
+  object-fit: fill; /* o Figma estica no box; a diferença de proporção é 0,6% */
+  object-position: bottom center;
+  pointer-events: none;
+  will-change: transform;
+  /* A foto é um recorte que termina nos punhos e sangra só 32px abaixo do
+     hero. Qualquer transform ancorado no centro levanta essa borda para
+     dentro da tela e o corte vira uma linha reta no meio do braço. Com a
+     origem na base, a borda fica presa no rodapé do hero. */
+  transform-origin: bottom center;
+}
+
+/* blob verde sólido atrás da foto — sangra 92px pela direita */
+.hero__blob {
+  left: 58.07%; /* 1115 / 1920 */
+  top: 21.58%; /* 178 / 825   */
+  width: 46.72%; /* 897 / 1920  */
+  z-index: 0;
+}
+
+/* quadrados arredondados com contorno */
+.hero__frame {
+  width: 45.57%; /* 875 / 1920 */
+  aspect-ratio: 1;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.hero__frame--right {
+  left: 65%; /* 1248 / 1920 */
+  top: -28.6%; /* -236 / 825 */
+}
+
+.hero__frame--left {
+  left: -27.86%; /* -535 / 1920 */
+  top: -40.12%; /* -331 / 825  */
+  transform: rotate(180deg);
+}
+
+/* glows */
+.hero__glow {
+  z-index: 0;
+}
+
+/* Ellipse 103 — círculo r=505 #00FF48, blur σ=308.15 (Figma 3270:518) */
+.hero__glow--big {
+  --glow-color: var(--c-glow-a);
+  --glow-blur: 16.05vw; /* 308.15 / 1920 */
+  left: 84.27%; /* 1618 / 1920 */
+  top: -37.09%; /* -306 / 825  */
+  width: 52.6%; /* 1010 / 1920 */
+  aspect-ratio: 1;
+}
+
+/* DOBRA 9 — círculo r=163.7 #0CFF00, blur σ=221.64, blend screen (3270:516) */
+.hero__glow--small {
+  --glow-color: var(--c-glow-b);
+  --glow-blur: 11.54vw; /* 221.64 / 1920  */
+  left: 88.33%; /* 1696 / 1920    */
+  top: 93.03%; /* 767.47 / 825   */
+  width: 17.06%; /* 327.47 / 1920  */
+  aspect-ratio: 1;
+}
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+/* Tablet: a foto encolhe e desce, o texto ganha respiro */
+@media (max-width: 1023px) {
+  .hero {
+    --hero-h: auto;
+    padding-block: clamp(8rem, 22vw, 12rem) 0;
+  }
+
+  .hero__inner {
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+  }
+
+  .hero__copy,
+  .hero__title,
+  .hero__lead,
+  .hero__badges {
+    max-width: 58%; /* deixa a coluna direita livre para a foto */
+  }
+
+  /* sem a coluna inteira, os selos precisam quebrar em vez de passar por
+     baixo da foto */
+  .hero__badges {
+    gap: var(--sp-2) var(--sp-4);
+  }
+
+  .hero__badge {
+    white-space: normal;
+  }
+
+  .hero__badge:not(:last-child) {
+    border-right: 0;
+  }
+
+  .hero__photo {
+    left: auto;
+    right: -4%;
+    top: auto;
+    bottom: 0;
+    width: 44%;
+    height: auto;
+    aspect-ratio: 611 / 728;
+  }
+}
+
+/* Mobile: coluna única — texto em cima, foto encostada na base */
+@media (max-width: 767px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    padding-block: clamp(7rem, 30vw, 9rem) 0;
+  }
+
+  /* a ordem do DOM põe a foto antes do texto (ela é decorativa e absoluta no
+     desktop); no mobile ela vira bloco no fluxo e precisa ir para o fim      */
+  .hero__inner {
+    order: 1;
+    padding-bottom: var(--sp-10);
+  }
+
+  .hero__photo {
+    order: 2;
+    position: relative;
+    display: block;
+    inset: auto;
+    width: min(90%, 380px);
+    height: auto;
+    aspect-ratio: 611 / 728;
+    margin: 0 auto -1px; /* encosta na base: o corte da foto some */
+  }
+
+  .hero__copy,
+  .hero__title,
+  .hero__lead,
+  .hero__badges {
+    max-width: 100%;
+  }
+
+  .hero__actions {
+    margin-top: var(--sp-8);
+    gap: var(--sp-3);
+  }
+
+  .hero__actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .hero__badges {
+    margin-top: var(--sp-8);
+    gap: var(--sp-3) var(--sp-4);
+  }
+
+  .hero__badge {
+    white-space: normal;
+  }
+
+  .hero__badge:not(:last-child) {
+    border-right: 0;
+  }
+
+  /* decorativos: o blob vira o fundo da foto, os contornos ficam de textura */
+  /* o canto arredondado do blob fica visível à esquerda e faz a transição
+     para a área da foto — sem isso o topo vira uma linha reta dura */
+  .hero__blob {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48%;
+    object-fit: fill;
+  }
+
+  .hero__frame--right {
+    left: 30%;
+    top: -10%;
+    width: 110%;
+  }
+
+  .hero__frame--left {
+    left: -70%;
+    top: 6%;
+    width: 110%;
+  }
+
+  /* o blur precisa acompanhar o tamanho do glow, não o do viewport:
+     mantém a mesma proporção blur/raio do desktop                          */
+  .hero__glow--big {
+    --glow-blur: 30.5vw; /* 30,5% da largura, como no desktop */
+    left: 55%;
+    top: -22%;
+    width: 100%;
+  }
+
+  .hero__glow--small {
+    --glow-blur: 30.4vw; /* 67,6% da largura, como no desktop */
+    left: 65%;
+    top: 78%;
+    width: 45%;
+  }
+}
