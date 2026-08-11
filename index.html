@@ -38,7 +38,17 @@
     />
 
     <!-- A foto do hero é o LCP: começa a baixar junto com o CSS -->
-    <link rel="preload" href="assets/img/hero/hero-mulher.webp" as="image" fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      fetchpriority="high"
+      href="assets/img/hero/hero-mulher.webp"
+      imagesrcset="
+        assets/img/hero/hero-mulher-560.webp 560w,
+        assets/img/hero/hero-mulher-700.webp 700w,
+        assets/img/hero/hero-mulher.webp     854w"
+      imagesizes="(max-width: 767px) 88vw, 32vw"
+    />
 
     <!-- Base -->
     <link rel="stylesheet" href="assets/css/tokens.css" />
@@ -136,15 +146,23 @@
           alt=""
           aria-hidden="true"
         />
-        <div class="deco deco--glow hero__glow hero__glow--big" aria-hidden="true"></div>
+        <div class="deco hero__glow hero__glow--big" aria-hidden="true"></div>
         <div
-          class="deco deco--glow deco--glow-screen hero__glow hero__glow--small"
+          class="deco hero__glow hero__glow--small"
           aria-hidden="true"
         ></div>
 
+        <!-- A foto é o LCP. No celular ela ocupa ~338px de largura, então o
+             arquivo de 854px era desperdício: `srcset` deixa o navegador
+             escolher, e `sizes` diz de antemão quanto ela vai medir. -->
         <img decoding="async"
           class="hero__photo"
           src="assets/img/hero/hero-mulher.webp"
+          srcset="
+            assets/img/hero/hero-mulher-560.webp 560w,
+            assets/img/hero/hero-mulher-700.webp 700w,
+            assets/img/hero/hero-mulher.webp     854w"
+          sizes="(max-width: 767px) 88vw, 32vw"
           alt="Cliente da Super Money sorrindo com o celular na mão"
           width="611"
           height="728"
@@ -1301,7 +1319,6 @@
     <script src="vendor/gsap.min.js"></script>
     <script src="vendor/ScrollTrigger.min.js"></script>
     <script src="vendor/SplitText.min.js"></script>
-    <script src="vendor/Draggable.min.js"></script>
     <script src="vendor/lenis.min.js"></script>
 
     <!-- App -->

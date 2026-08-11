@@ -126,6 +126,26 @@ animação de entrada também animava `opacity` — uma anulava a outra. Esconde
 passou a ser feito por classe (`.is-fora`), deixando a `opacity` livre para o
 GSAP.
 
+**`filter: blur()` grande é o que trava o celular.** Os dois glows do hero eram
+discos sólidos com `filter: blur(σ)`. No mobile o σ vira 119px, e a gaussiana
+exige uma superfície de ~1089² por glow — quase 2 Mpx em DPR 1 e ~18 Mpx num
+celular DPR 3, paga antes do primeiro paint. Era isso que fazia o hero demorar
+e engasgar. Hoje são **radial-gradients calibrados**: o perfil radial do disco
+borrado foi integrado numericamente e amostrado em 11 raios. Diferença contra o
+`filter` original: **0,27 de 255 em média, pior pixel 3** — mesma imagem, custo
+zero. A técnica já era usada em "Como funciona"; faltava trazê-la para o hero.
+
+**Plugin que serve a uma seção só não precisa estar no boot.** O `Draggable`
+são 35 KB e só existe para o carrossel de depoimentos, a 4.700px do topo. Agora
+ele é buscado por `SM.carregarScript()` num `ScrollTrigger` com
+`start: "top bottom+=800"`. Setas, pontos e teclado já funcionam antes disso, e
+o `if (window.Draggable)` virou uma função chamada depois da carga.
+
+**`ScrollTrigger.config({ ignoreMobileResize: true })`.** No celular, recolher a
+barra de endereço muda a altura da viewport e dispara um refresh dos 70
+gatilhos (31ms cada num aparelho lento). Sem isso, os primeiros scrolls
+engasgam.
+
 **`backdrop-filter` vira bloco contêiner de `position: fixed`.** O `.nav` ganhava
 `backdrop-filter: blur(14px)` ao colar no topo. A partir daí o painel do menu
 mobile (`fixed; inset: 0`) parava de medir a viewport e passava a medir a caixa

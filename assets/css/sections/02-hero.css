@@ -125,29 +125,65 @@
   transform: rotate(180deg);
 }
 
-/* glows */
+/* Glows.
+   No Figma são dois discos sólidos com feGaussianBlur (r=505 σ=308.15 e
+   r=163.7 σ=221.64). Um `filter: blur()` reproduz isso pixel a pixel, mas
+   custa caro: no celular o σ vira 119px, e a gaussiana precisa de uma
+   superfície de ~1089² por glow — 2 Mpx em DPR 1, quase 18 Mpx em DPR 3.
+   Era o que fazia o hero demorar a pintar e travar no mobile.
+
+   Aqui os mesmos discos são desenhados como GRADIENTE. Os stops não são
+   chutados: o perfil radial de um disco de raio R borrado com σ foi integrado
+   numericamente e amostrado em 11 raios. O resultado é a mesma imagem, sem
+   filtro nenhum — o pico não chega a 1 justamente porque σ > R, como no
+   original.
+
+   As duas caixas cobrem o hero inteiro (`inset: 0`); quem define tamanho e
+   posição é o próprio gradiente, então o navegador só rasteriza o que está
+   na tela.                                                                  */
 .hero__glow {
+  inset: 0;
   z-index: 0;
+  will-change: transform;
 }
 
-/* Ellipse 103 — círculo r=505 #00FF48, blur σ=308.15 (Figma 3270:518) */
-.hero__glow--big {
-  --glow-color: var(--c-glow-a);
-  --glow-blur: 16.05vw; /* 308.15 / 1920 */
-  left: 84.27%; /* 1618 / 1920 */
-  top: -37.09%; /* -306 / 825  */
-  width: 52.6%; /* 1010 / 1920 */
-  aspect-ratio: 1;
-}
-
-/* DOBRA 9 — círculo r=163.7 #0CFF00, blur σ=221.64, blend screen (3270:516) */
+/* o pequeno soma luz em cima do blob, como no Figma */
 .hero__glow--small {
-  --glow-color: var(--c-glow-b);
-  --glow-blur: 11.54vw; /* 221.64 / 1920  */
-  left: 88.33%; /* 1696 / 1920    */
-  top: 93.03%; /* 767.47 / 825   */
-  width: 17.06%; /* 327.47 / 1920  */
-  aspect-ratio: 1;
+  mix-blend-mode: screen;
+}
+
+.hero__glow--big {
+  background: radial-gradient(
+    74.451vw 74.451vw at 110.57% 24.117%,
+    rgb(0 255 72 / 0.739) 0%,
+    rgb(0 255 72 / 0.715) 8%,
+    rgb(0 255 72 / 0.647) 16%,
+    rgb(0 255 72 / 0.544) 24%,
+    rgb(0 255 72 / 0.422) 32%,
+    rgb(0 255 72 / 0.3) 40%,
+    rgb(0 255 72 / 0.171) 50%,
+    rgb(0 255 72 / 0.083) 60%,
+    rgb(0 255 72 / 0.028) 72%,
+    rgb(0 255 72 / 0.005) 86%,
+    rgb(0 255 72 / 0) 100%
+  );
+}
+
+.hero__glow--small {
+  background: radial-gradient(
+    43.159vw 43.159vw at 96.86% 112.882%,
+    rgb(12 255 0 / 0.239) 0%,
+    rgb(12 255 0 / 0.23) 8%,
+    rgb(12 255 0 / 0.204) 16%,
+    rgb(12 255 0 / 0.168) 24%,
+    rgb(12 255 0 / 0.128) 32%,
+    rgb(12 255 0 / 0.09) 40%,
+    rgb(12 255 0 / 0.052) 50%,
+    rgb(12 255 0 / 0.026) 60%,
+    rgb(12 255 0 / 0.01) 72%,
+    rgb(12 255 0 / 0.003) 86%,
+    rgb(12 255 0 / 0) 100%
+  );
 }
 
 /* ==========================================================================
@@ -278,17 +314,39 @@
 
   /* o blur precisa acompanhar o tamanho do glow, não o do viewport:
      mantém a mesma proporção blur/raio do desktop                          */
+  /* Mesmo perfil de stops do desktop — a razão raio/σ é idêntica (1.64 no
+     grande, 0.74 no pequeno), então só mudam o raio e o centro do gradiente. */
   .hero__glow--big {
-    --glow-blur: 30.5vw; /* 30,5% da largura, como no desktop */
-    left: 55%;
-    top: -22%;
-    width: 100%;
+    background: radial-gradient(
+      141.5vw 141.5vw at 105% -3.5%,
+      rgb(0 255 72 / 0.739) 0%,
+      rgb(0 255 72 / 0.715) 8%,
+      rgb(0 255 72 / 0.647) 16%,
+      rgb(0 255 72 / 0.544) 24%,
+      rgb(0 255 72 / 0.422) 32%,
+      rgb(0 255 72 / 0.3) 40%,
+      rgb(0 255 72 / 0.171) 50%,
+      rgb(0 255 72 / 0.083) 60%,
+      rgb(0 255 72 / 0.028) 72%,
+      rgb(0 255 72 / 0.005) 86%,
+      rgb(0 255 72 / 0) 100%
+    );
   }
 
   .hero__glow--small {
-    --glow-blur: 30.4vw; /* 67,6% da largura, como no desktop */
-    left: 65%;
-    top: 78%;
-    width: 45%;
+    background: radial-gradient(
+      113.7vw 113.7vw at 87.5% 86.3%,
+      rgb(12 255 0 / 0.239) 0%,
+      rgb(12 255 0 / 0.23) 8%,
+      rgb(12 255 0 / 0.204) 16%,
+      rgb(12 255 0 / 0.168) 24%,
+      rgb(12 255 0 / 0.128) 32%,
+      rgb(12 255 0 / 0.09) 40%,
+      rgb(12 255 0 / 0.052) 50%,
+      rgb(12 255 0 / 0.026) 60%,
+      rgb(12 255 0 / 0.01) 72%,
+      rgb(12 255 0 / 0.003) 86%,
+      rgb(12 255 0 / 0) 100%
+    );
   }
 }

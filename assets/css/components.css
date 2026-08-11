@@ -148,21 +148,6 @@
   z-index: var(--z-deco);
 }
 
-/* Glows.
-   O Figma exporta cada glow como um círculo sólido com feGaussianBlur. O
-   `filter: blur()` do CSS é a mesma gaussiana, então um círculo sólido com o
-   mesmo raio e o mesmo desvio-padrão reproduz o original exatamente — e é
-   muito mais leve que um SVG de 2242px com filtro.
-   Cada glow define --glow-color, --glow-blur (em vw, para escalar junto com a
-   página) e, quando preciso, --glow-opacity.                                 */
-.deco--glow {
-  border-radius: 50%;
-  background: var(--glow-color, var(--c-glow-a));
-  filter: blur(var(--glow-blur, 8vw));
-  opacity: var(--glow-opacity, 1);
-  will-change: transform;
-}
-
-.deco--glow-screen {
-  mix-blend-mode: screen;
-}
+/* Os glows do hero deixaram de ser `filter: blur()` num disco e viraram
+   gradiente — a regra que morava aqui foi para 02-hero.css, junto dos stops
+   calibrados. Nenhuma outra seção usava. */

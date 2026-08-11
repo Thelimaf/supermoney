@@ -178,17 +178,32 @@ Total servido hoje (CSS + JS + fontes + imagens + vendor): **~956 KB**.
 
 ### Carregamento
 
+Medido com CPU 6× mais lenta e 1,6 Mbps (celular mediano):
+
 | Medida | Antes | Depois |
 | --- | --- | --- |
-| Requisições no load | 104 | **57** |
+| Requisições no load | 104 | **51** |
 | Imagens baixadas no load | 124 | **13** |
-| Plugins GSAP na página | 6 | **4** |
+| JS no boot | 239 KB | **204 KB** |
+| Plugins GSAP na página | 6 | **3** |
+| FCP | 1152 ms | **1088 ms** |
+| DOM interativo | 2070 ms | **1863 ms** |
+| Load | 3172 ms | **2640 ms** |
+| Superfícies com `filter: blur()` | 2 (2 Mpx) | **0** |
 
 - Só as imagens do hero e do nav são `eager`; as outras 116 têm
   `loading="lazy"`. Todas ganharam `decoding="async"`.
 - A foto do hero é o LCP e tem `<link rel="preload" as="image">` +
   `fetchpriority="high"`.
 - `DrawSVGPlugin` e `InertiaPlugin` saíram da página (nenhuma seção os usa).
+- O `Draggable` (35 KB) serve só ao carrossel de depoimentos, a 4.700px do
+  topo: agora é carregado sob demanda quando a seção se aproxima. Setas,
+  pontos e teclado funcionam desde o primeiro frame.
+- A foto do hero tem `srcset` de 560/700/854px — o celular baixa 37 KB em vez
+  de 84 KB.
+- Os glows do hero deixaram de usar `filter: blur()` (ver abaixo).
+- `ScrollTrigger.config({ ignoreMobileResize: true })`: sem isso, recolher a
+  barra de endereço do celular remedia os 70 gatilhos e engasga o scroll.
 - CLS medido: **0**.
 
 As fontes Lato e Inter (143 KB) baixam no load mesmo servindo só a depoimentos e

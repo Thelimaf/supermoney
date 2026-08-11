@@ -148,7 +148,14 @@ SM.section("depoimentos", (mm, anim) => {
   let xAoPegar = 0;
   let arrastou = false;
 
-  if (window.Draggable) {
+  /* O Draggable são 35 KB só para este carrossel, que fica a ~4.700px do topo.
+     Carregar no boot atrasava o primeiro scroll no celular à toa — agora ele
+     chega sob demanda, quando a seção se aproxima. Setas, pontos e teclado
+     funcionam desde o início, então nada fica quebrado no meio do caminho. */
+  function ligarArraste() {
+    if (!window.Draggable) return;
+    gsap.registerPlugin(Draggable);
+
     // o Draggable atua num proxy invisível: quem se move de fato são os cards,
     // cada um com sua própria escala — não há uma pista única para deslocar
     const proxy = document.createElement("div");
@@ -200,6 +207,13 @@ SM.section("depoimentos", (mm, anim) => {
       true
     );
   }
+
+  ScrollTrigger.create({
+    trigger: viewport,
+    start: "top bottom+=800", // bem antes de aparecer, para chegar pronto
+    once: true,
+    onEnter: () => SM.carregarScript("vendor/Draggable.min.js").then(ligarArraste),
+  });
 
   /* ---- Medidas e primeira pintura ---------------------------------------- */
   // fora do matchMedia: o carrossel não é dirigido por scroll, e o

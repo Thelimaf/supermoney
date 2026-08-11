@@ -11,15 +11,38 @@
   const SM = (window.SM = window.SM || {});
 
   /* ---- 1. Plugins (uma vez só, antes de tudo) ---------------------------- */
-  const plugins = [ScrollTrigger, SplitText];
-  // Draggable só é usado pelo carrossel de depoimentos.
+  // Draggable não entra aqui: ele é carregado sob demanda pelo carrossel de
+  // depoimentos (ver 08-depoimentos.js) e se registra sozinho ao chegar.
   // DrawSVGPlugin e InertiaPlugin ficaram fora da página: nenhuma seção os usa
   // (o carrossel arrasta com `inertia: false`). Os arquivos continuam em
-  // vendor/ — para religar, basta devolver as duas tags no index.html.
-  if (window.Draggable) plugins.push(Draggable);
-  gsap.registerPlugin(...plugins);
+  // vendor/ — para religar, basta devolver as tags no index.html.
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  /* No celular, esconder/mostrar a barra de endereço muda a altura da viewport
+     e, sem isto, o ScrollTrigger remede os 70 gatilhos a cada mudança — é o
+     que faz a página engasgar nos primeiros scrolls. Só a largura passa a
+     provocar refresh. */
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   gsap.defaults({ ease: "power3.out", duration: 0.9 });
+
+  /* ---- 1b. Carga sob demanda --------------------------------------------- */
+  /* Um mesmo arquivo pedido duas vezes devolve a mesma promessa, então dá para
+     chamar sem medo de onde for. */
+  const carregados = new Map();
+  SM.carregarScript = function (url) {
+    if (carregados.has(url)) return carregados.get(url);
+    const p = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = url;
+      s.async = true;
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error("falhou ao carregar " + url));
+      document.head.appendChild(s);
+    });
+    carregados.set(url, p);
+    return p;
+  };
 
   /* ---- 2. Preferência de movimento reduzido ------------------------------ */
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
