@@ -41,6 +41,39 @@
   line-height: 1.56;
 }
 
+/* ---- Correspondente (dados da empresa) ----------------------------------- */
+.rodape__correspondente {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 268px;
+}
+
+.rodape__titulo {
+  font-size: 0.875rem; /* 14px */
+  font-weight: 700;
+  line-height: 1.393;
+  color: var(--c-branco);
+}
+
+.rodape__empresa {
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: 1.56;
+}
+
+.rodape__empresa strong {
+  display: block;
+  color: var(--c-branco);
+  font-weight: 700;
+}
+
+.rodape__contato {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 /* ---- Colunas de links ---------------------------------------------------- */
 .rodape__nav ul,
 .rodape__redes {
@@ -78,6 +111,10 @@
 
 /* ---- Rodapé do rodapé ---------------------------------------------------- */
 .rodape__base {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   padding-top: 22px;
   font-size: 0.875rem;
   line-height: 1.286; /* 18px */
@@ -86,17 +123,36 @@
   border-top: 1px solid rgb(185 185 185 / 0.13);
 }
 
+/* o aviso legal é secundário: menor e mais apagado que o copyright */
+.rodape__aviso {
+  max-width: 720px;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: rgb(185 185 185 / 0.72);
+}
+
 /* ==========================================================================
    Responsivo
    ========================================================================== */
+/* Com quatro colunas o desktop fica apertado antes dos 1200px: a marca e o
+   correspondente sobem para uma linha, os links e as redes para a seguinte. */
+@media (max-width: 1199px) {
+  .rodape__topo {
+    flex-wrap: wrap;
+    gap: 40px 56px;
+  }
+}
+
 @media (max-width: 767px) {
   .rodape__topo {
     flex-direction: column;
     gap: 32px;
   }
 
-  .rodape__marca {
+  .rodape__marca,
+  .rodape__correspondente {
     width: 100%;
-    max-width: 320px;
+    max-width: 340px;
   }
 }

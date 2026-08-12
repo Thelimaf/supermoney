@@ -42,6 +42,23 @@ vendor/                     GSAP e Lenis
 - As respostas 2 a 5 do FAQ foram escritas a partir do conteúdo da página; só a
   primeira vem do Figma.
 - Todos os CTAs de WhatsApp apontam para `(27) 99962-3772` (unidade Aracruz).
+- O card "Empréstimo no Cartão de Crédito" perdeu o "até 70% do limite" que
+  vinha do cartão consignado (suspenso pelo governo). Se houver um percentual
+  válido para a conversão do limite, é só devolver ao texto.
+
+## Dados cadastrais
+
+Os dados do correspondente no rodapé vêm do comprovante de CNPJ:
+
+| | |
+| --- | --- |
+| Razão social | R.G.R. Bastos — Serviços de Análise de Cadastro |
+| CNPJ | 34.380.280/0001-22 (matriz) |
+| Endereço | Av. Getúlio Vargas, 57 — Pavmto 1, Baixa Itália, Castelo — ES, 29.360-000 |
+| E-mail | rubia@supermoneyfinanceira.com |
+
+O endereço da sede é em Castelo-ES, mas **não existe mais loja física lá** — a
+única unidade de atendimento é a de Aracruz-ES.
 
 ## Fontes
 
